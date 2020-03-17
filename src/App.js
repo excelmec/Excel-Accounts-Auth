@@ -1,26 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {lazy, Suspense} from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import PrivateRoute from './routes/PrivateRoute';
+import PublicRoute from './routes/PublicRoute';
+import Loader from './components/Loader/Loader';
+
+const Login = lazy(() => import('./pages/Login/Login'));
+const Logout = lazy(() => import('./pages/Logout/Logout'));
+const Authorize = lazy(() => import('./pages/Authorize/Authorize'));
+const NotFound = lazy(() => import('./pages/NotFound'));
+// import Base from './pages/Base';
+
+const App = () => {
+    return (
+        <Router>
+            <Suspense fallback={<div className='fullCenter'><Loader /></div>}>
+                <Switch>
+                    <PublicRoute path='/auth/login' component={Login} />
+                    <PrivateRoute path='/auth/logout' component={Logout} />
+                    <PrivateRoute path='/auth/authorize' component={Authorize} />
+                    <Route component={NotFound} />
+                </Switch>
+            </Suspense>
+        </Router>
+    );
 }
 
 export default App;
