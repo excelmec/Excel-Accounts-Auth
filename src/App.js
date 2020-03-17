@@ -15,7 +15,7 @@ const NotFound = lazy(() => import('./pages/NotFound'));
 const App = () => {
     return (
         <Router>
-            <Suspense fallback={<Loader />}>
+            <Suspense fallback={<div className='fullCenter'><Loader /></div>}>
                 <Switch>
                     <PublicRoute path='/auth/login' component={Login} />
                     <PrivateRoute path='/auth/logout' component={Logout} />

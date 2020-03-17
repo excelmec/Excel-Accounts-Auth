@@ -5,7 +5,7 @@ const Callback = (props) => {
   useEffect(() => {
     handleAuthentication(props.location.hash, props.history);
   });
-  return <h1>Logging in</h1>;
+  return <h1 className='fullCenter'>Logging in</h1>;
 };
 
 export default Callback;
