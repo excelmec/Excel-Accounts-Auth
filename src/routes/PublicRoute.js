@@ -1,6 +1,6 @@
 import React from 'react';
 import { isLoggedIn } from '../config/auth0';
-import { Route, Redirect } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 
 const PublicRoute = ({
     component: Component,
