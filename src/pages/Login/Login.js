@@ -1,9 +1,11 @@
-import React from 'react';
+import React, {lazy, Suspense} from 'react';
 import { Route } from 'react-router-dom';
 import './Login.css';
+import Loader from '../../components/Loader/Loader';
 
 import { login } from '../../config/auth0';
-import Callback from './Callback';
+
+const Callback = lazy(() => import('./Callback'));
 
 const LoginButton = () => (
   <button onClick={login} className='btn'>Login</button>
@@ -11,11 +13,12 @@ const LoginButton = () => (
 
 const Login = (props) => {
   const { match } = props;
-  console.log('match: ', match);
   return (
     <div className='loginPage'>
       <Route exact path={`${match.url}`} component={LoginButton} />
-      <Route path={`${match.url}/callback/`} component={Callback} />
+      <Suspense fallback={<Loader />}>
+        <Route path={`${match.url}/callback/`} component={Callback} />
+      </Suspense>
     </div>
   );
 };

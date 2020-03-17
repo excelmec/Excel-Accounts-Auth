@@ -1,24 +1,28 @@
-import React from 'react';
+import React, {lazy, Suspense} from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
 
-import Login from './pages/Login/Login';
-import Logout from './pages/Logout/Logout';
-import Authorize from './pages/Authorize/Authorize';
-import NotFound from './pages/NotFound';
-import PrivateRoute from './PrivateRoute';
+import PrivateRoute from './routes/PrivateRoute';
+import PublicRoute from './routes/PublicRoute';
+import Loader from './components/Loader/Loader';
+
+const Login = lazy(() => import('./pages/Login/Login'));
+const Logout = lazy(() => import('./pages/Logout/Logout'));
+const Authorize = lazy(() => import('./pages/Authorize/Authorize'));
+const NotFound = lazy(() => import('./pages/NotFound'));
 // import Base from './pages/Base';
 
 const App = () => {
     return (
         <Router>
-            <Switch>
-                <Route path='/auth/login' component={Login} />
-                <PrivateRoute path='/auth/logout' component={Logout} />
-                <PrivateRoute path='/auth/authorize' component={Authorize} />
-                <Route component={NotFound} />
-                {/* <Route path='/auth' component={Base} /> */}
-            </Switch>
+            <Suspense fallback={<Loader />}>
+                <Switch>
+                    <PublicRoute path='/auth/login' component={Login} />
+                    <PrivateRoute path='/auth/logout' component={Logout} />
+                    <PrivateRoute path='/auth/authorize' component={Authorize} />
+                    <Route component={NotFound} />
+                </Switch>
+            </Suspense>
         </Router>
     );
 }
