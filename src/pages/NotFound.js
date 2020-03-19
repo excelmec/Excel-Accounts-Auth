@@ -2,7 +2,7 @@ import React from 'react';
 
 const NotFound = () => {
     return (
-        <div>
+        <div className='fullCenter'>
             404 Not Found
         </div>
     );

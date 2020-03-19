@@ -14,9 +14,9 @@ const LoginButton = () => (
 const Login = (props) => {
   const { match } = props;
   return (
-    <div className='loginPage'>
+    <div className='loginPage fullCenter'>
       <Route exact path={`${match.url}`} component={LoginButton} />
-      <Suspense fallback={<Loader />}>
+      <Suspense fallback={<div className='fullCenter'><Loader /></div>}>
         <Route path={`${match.url}/callback/`} component={Callback} />
       </Suspense>
     </div>

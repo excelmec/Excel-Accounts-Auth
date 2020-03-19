@@ -1,0 +1,2 @@
+(this.webpackJsonpauth=this.webpackJsonpauth||[]).push([[6],{45:function(t,e,n){"use strict";n.r(e);var a=n(0),s=n.n(a);e.default=function(){return Object(a.useEffect)((function(){window.parent.postMessage(localStorage.getItem("jwt_token"),"*")}),[]),s.a.createElement("h1",null,"Hi")}}}]);
+//# sourceMappingURL=6.07723d90.chunk.js.map

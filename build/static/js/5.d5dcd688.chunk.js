@@ -1,2 +1,0 @@
-(this.webpackJsonpauth=this.webpackJsonpauth||[]).push([[5],{40:function(t,e,n){"use strict";n.r(e);var a=n(0),c=n.n(a),s=n(8);e.default=function(t){return Object(a.useEffect)((function(){Object(s.a)(t.location.hash,t.history)})),c.a.createElement("h1",{className:"fullCenter"},"Logging in")}}}]);
-//# sourceMappingURL=5.d5dcd688.chunk.js.map

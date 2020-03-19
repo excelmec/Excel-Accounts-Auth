@@ -1,5 +1,6 @@
 import React, {useEffect} from 'react';
 import { handleLogout } from '../../config/auth0';
+import CubeSpinner from '../../components/Spinner/CubeSpinner';
 
 const Logout = (props) => {
   useEffect(() => {
@@ -16,7 +17,12 @@ const Logout = (props) => {
     handleLogout(props.location.hash);
   });
   
-  return <h1 style={{ textAlign: 'center' }}>Logging out...</h1>;
+  return (
+    <div className='fullCenter'>
+      <CubeSpinner />
+      <h1>Logging out...</h1>
+    </div>
+  );
 }
 
 export default Logout;
