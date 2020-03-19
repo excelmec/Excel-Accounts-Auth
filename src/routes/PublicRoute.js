@@ -11,7 +11,12 @@ const PublicRoute = ({
             <Component {...props} />
         )} />
     );
-    window.location.href = `${window.location.origin}/`;
+    try {
+        window.history.back();
+    } catch (e) {
+        window.location.href = `${window.location.origin}/`;
+    };
+    return null;
 }
 
 

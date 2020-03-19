@@ -3,9 +3,9 @@ import './CubeSpinner.css';
 
 const CubeSpinner = () => {
     return (
-        <div class='spinner'>
-            <div class='cube1' />
-            <div class='cube2' />
+        <div className='spinner'>
+            <div className='cube1' />
+            <div className='cube2' />
         </div>
     )
 }
