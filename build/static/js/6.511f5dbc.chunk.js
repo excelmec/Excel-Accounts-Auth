@@ -1,0 +1,2 @@
+(this.webpackJsonpauth=this.webpackJsonpauth||[]).push([[6],{42:function(t,e,n){"use strict";n.r(e);var c=n(0),o=n.n(c),a=n(8);e.default=function(t){return Object(c.useEffect)((function(){localStorage.clear();for(var e=document.cookie.split(";"),n=0;n<e.length;n++){var c=e[n],o=c.indexOf("="),u=o>-1?c.substr(0,o):c;document.cookie=u+"=;expires=Thu, 01 Jan 1970 00:00:00 GMT"}Object(a.b)(t.location.hash)})),o.a.createElement("h1",{style:{textAlign:"center"}},"Logging out...")}}}]);
+//# sourceMappingURL=6.511f5dbc.chunk.js.map
