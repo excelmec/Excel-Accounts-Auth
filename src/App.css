@@ -1,6 +1,9 @@
-/* body {
-    background-color: #282c34;
-} */
+body {
+    background-color: #1a2035;
+    color: #FFFFFF;
+    /* background: radial-gradient(#40404b, #111118) rgba(34,34,40,0.94); */
+
+}
 .fullCenter {
     margin: 0;
     position: absolute;
