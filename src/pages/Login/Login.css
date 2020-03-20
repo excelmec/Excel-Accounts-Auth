@@ -1,23 +1,23 @@
 .loginPage {
-    width: 100%;
     text-align: center;
-    padding-top: 40vh;
 }
 
 .btn {
   border-width: 0;
+  text-transform: uppercase;
   outline: none;
-  border-radius: 5px;
-  padding: 10px 20px;
-  font-size: large;
+  border-radius: .2rem;
+  padding: 1.125rem 2.25rem;
+  font-size: .875rem;
+  line-height: 1.333333;
   box-shadow: 0 1px 4px rgba(0, 0, 0, .6);
 
-  background-color: #1a2035;
-  color: #ecf0f1;
+  background-color: #692E73;
+  color: #fff;
   
   transition: background-color .3s;
 }
 .btn:hover, .btn:focus {
     cursor: pointer;
-    background-color: #131726;
+    background-color: #5b2763;
 }

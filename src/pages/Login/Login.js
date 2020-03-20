@@ -7,16 +7,23 @@ import { login } from '../../config/auth0';
 
 const Callback = lazy(() => import('./Callback'));
 
-const LoginButton = () => (
-  <button onClick={login} className='btn'>Login</button>
-);
+const LoginButton = () => {
+  React.useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const redirectUrl = urlParams.get('redirect_to');
+    localStorage.setItem('redirect_to', redirectUrl);
+  }, []);
+  return (
+    <button onClick={login} className='btn'>Login</button>
+  );
+}
 
 const Login = (props) => {
   const { match } = props;
   return (
-    <div className='loginPage'>
+    <div className='loginPage fullCenter'>
       <Route exact path={`${match.url}`} component={LoginButton} />
-      <Suspense fallback={<Loader />}>
+      <Suspense fallback={<div className='fullCenter'><Loader /></div>}>
         <Route path={`${match.url}/callback/`} component={Callback} />
       </Suspense>
     </div>

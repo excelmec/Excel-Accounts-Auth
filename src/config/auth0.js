@@ -36,7 +36,13 @@ const setSession = (authResult, history) => {
         .post('/auth/login', { auth_token: authResult.accessToken })
         .then(res => {
             localStorage.setItem('jwt_token', res.token);
-            window.location.href = '/';
+            const redirectUri = localStorage.getItem('redirect_to');
+            if (redirectUri) {
+                localStorage.removeItem('redirect_to');
+                window.location.href = redirectUri;
+            } else {
+                window.location.href = `${window.location.origin}/`;
+            }
         });
 };
 
@@ -44,6 +50,7 @@ export const handleLogout = (history) => {
     webAuth.logout({
         returnTo: window.location.origin
     });
+    // webAuth.logout();
 };
 
 export const isLoggedIn = () => {
