@@ -7,9 +7,16 @@ import { login } from '../../config/auth0';
 
 const Callback = lazy(() => import('./Callback'));
 
-const LoginButton = () => (
-  <button onClick={login} className='btn'>Login</button>
-);
+const LoginButton = () => {
+  React.useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const redirectUrl = urlParams.get('redirect_to');
+    localStorage.setItem('redirect_to', redirectUrl);
+  }, []);
+  return (
+    <button onClick={login} className='btn'>Login</button>
+  );
+}
 
 const Login = (props) => {
   const { match } = props;

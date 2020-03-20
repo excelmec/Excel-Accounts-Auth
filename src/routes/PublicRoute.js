@@ -6,7 +6,7 @@ const PublicRoute = ({
     component: Component,
     ...rest
 }) => {
-    if (!isLoggedIn() ) return (
+    if (!isLoggedIn()) return (
         <Route {...rest} component={(props) => (
             <Component {...props} />
         )} />
@@ -16,7 +16,7 @@ const PublicRoute = ({
     } catch (e) {
         window.location.href = `${window.location.origin}/`;
     };
-    return null;
+    return <p className='fullCenter'>Already logged in</p>;
 }
 
 
