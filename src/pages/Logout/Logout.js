@@ -20,7 +20,7 @@ const Logout = (props) => {
   return (
     <div className='fullCenter'>
       <CubeSpinner />
-      <h1>Logging out...</h1>
+      <h1 className='auth-status-text'>Logging out...</h1>
     </div>
   );
 }
