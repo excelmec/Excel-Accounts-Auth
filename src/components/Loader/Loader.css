@@ -1,12 +1,11 @@
-.loader {    
-    border: 16px solid #f3f3f3;
+.loader {
     border-radius: 50%;
-    border-top: 16px solid blue;
-    border-right: 16px solid green;
-    border-bottom: 16px solid red;
-    border-left: 16px solid pink;
-    width: 60px;
-    height: 60px;
+    border-top: 12px solid #692E73;
+    border-bottom: 12px solid #692E73;
+    border-right: 12px solid #343a40;
+    border-left: 12px solid #343a40;
+    width: 80px;
+    height: 80px;
     -webkit-animation: spin 2s linear infinite; /* Safari */
     animation: spin 2s linear infinite;
 }

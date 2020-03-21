@@ -9,7 +9,7 @@ const Callback = (props) => {
   return (
     <div className='fullCenter'>
       <CubeSpinner />
-      <h1>Logging in</h1>
+      <h1 className='auth-status-text'>Logging in</h1>
     </div>
   );
 };

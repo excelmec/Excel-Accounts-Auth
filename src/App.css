@@ -1,8 +1,16 @@
-.App {
-    background-color: #1a2035;
-    color: #FFFFFF;
-
+html, body {
+    height: 100%;
+    margin: 0;
 }
+
+body {
+    background: #1a2035;
+}
+
+.auth-status-text {
+    color: #a9afbbd1;
+}
+
 .fullCenter {
     margin: 0;
     position: absolute;
