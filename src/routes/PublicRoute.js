@@ -11,12 +11,8 @@ const PublicRoute = ({
             <Component {...props} />
         )} />
     );
-    try {
-        window.history.back();
-    } catch (e) {
-        window.location.href = `${window.location.origin}/`;
-    };
-    return <p className='fullCenter'>Already logged in</p>;
+    window.location.href = `${window.location.origin}/`;
+    return <h2 className='fullCenter' style={{ color: 'white' }}>Already logged in</h2>;
 }
 
 
