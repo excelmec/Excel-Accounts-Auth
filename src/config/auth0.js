@@ -32,6 +32,7 @@ export const handleAuthentication = (hash, history) => {
 
 const setSession = (authResult, history) => {
     console.log(authResult.accessToken);
+    localStorage.setItem('access_token', authResult.accessToken);
     return http
         .post('/auth/login', { auth_token: authResult.accessToken })
         .then(res => {
