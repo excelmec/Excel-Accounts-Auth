@@ -4,6 +4,8 @@ import CubeSpinner from '../../components/Spinner/CubeSpinner';
 
 const Logout = (props) => {
   useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const redirectUrl = urlParams.get('redirect_to');
     localStorage.clear();
     var cookies = document.cookie.split(';');
   
@@ -14,7 +16,7 @@ const Logout = (props) => {
         document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:00 GMT';
     }
     
-    handleLogout(props.location.hash);
+    handleLogout(props.location.hash, redirectUrl);
   });
   
   return (
