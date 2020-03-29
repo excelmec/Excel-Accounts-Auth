@@ -15,7 +15,7 @@ const PublicRoute = ({
     if (origin!=='http://localhost:1000')
         window.location.href = `${origin}/`;
     else
-        window.location.href='http://localhost:300/';
+        window.location.href='http://localhost:3000/';
     return <h2 className='fullCenter' style={{ color: 'white' }}>Already logged in</h2>;
 }
 
