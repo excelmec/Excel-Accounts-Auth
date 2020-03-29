@@ -46,9 +46,9 @@ const setSession = async (authResult, history) => {
         });
 };
 
-export const handleLogout = (history) => {
+export const handleLogout = (history, redirectUrl) => {
     webAuth.logout({
-        returnTo: window.location.origin
+        returnTo: redirectUrl
     });
     // webAuth.logout();
 };
