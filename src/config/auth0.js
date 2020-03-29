@@ -30,7 +30,7 @@ export const handleAuthentication = (hash, history) => {
     });
 };
 
-const setSession = (authResult, history) => {
+const setSession = async (authResult, history) => {
     console.log(authResult.accessToken);
     return http
         .post('/auth/login', { auth_token: authResult.accessToken })
