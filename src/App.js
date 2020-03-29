@@ -12,20 +12,26 @@ const Authorize = lazy(() => import('./pages/Authorize/Authorize'));
 const NotFound = lazy(() => import('./pages/NotFound'));
 
 const App = () => {
-    return (
-        <div>
-            <Router>
-                <Suspense fallback={<div className='fullCenter'><Loader /></div>}>
-                    <Switch>
-                        <PublicRoute path='/auth/login' component={Login} />
-                        <PrivateRoute path='/auth/logout' component={Logout} />
-                        <PrivateRoute path='/auth/authorize' component={Authorize} />
-                        <Route component={NotFound} />
-                    </Switch>
-                </Suspense>
-            </Router>
-        </div>
-    );
-}
+  return (
+    <div>
+      <Router>
+        <Suspense
+          fallback={
+            <div className="fullCenter">
+              <Loader />
+            </div>
+          }
+        >
+          <Switch>
+            <PublicRoute path="/auth/login" component={Login} />
+            <PrivateRoute path="/auth/logout" component={Logout} />
+            <Route path="/auth/authorize" component={Authorize} />
+            <Route component={NotFound} />
+          </Switch>
+        </Suspense>
+      </Router>
+    </div>
+  );
+};
 
 export default App;
