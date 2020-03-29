@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "ab8a2434b52033631a55893cf2203e26",
+    "revision": "26c328d0fb451581fddcf4823883c739",
     "url": "/auth/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/auth/static/css/3.070abd3c.chunk.css"
   },
   {
-    "revision": "0b1401cde013dc021043",
+    "revision": "1d90d88372504f6843a5",
     "url": "/auth/static/css/4.070abd3c.chunk.css"
   },
   {
@@ -16,7 +16,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/auth/static/css/5.dd100b5b.chunk.css"
   },
   {
-    "revision": "52f16957e1e667718d3a",
+    "revision": "a638c7cd99ef78fa2720",
     "url": "/auth/static/css/main.48f17630.chunk.css"
   },
   {
@@ -32,8 +32,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/auth/static/js/3.ff0adf10.chunk.js"
   },
   {
-    "revision": "0b1401cde013dc021043",
-    "url": "/auth/static/js/4.977d9224.chunk.js"
+    "revision": "1d90d88372504f6843a5",
+    "url": "/auth/static/js/4.07f96c43.chunk.js"
   },
   {
     "revision": "c42866299e0127ffbc94",
@@ -48,11 +48,11 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/auth/static/js/7.c13d9a2a.chunk.js"
   },
   {
-    "revision": "52f16957e1e667718d3a",
-    "url": "/auth/static/js/main.7ff77f69.chunk.js"
+    "revision": "a638c7cd99ef78fa2720",
+    "url": "/auth/static/js/main.9988a974.chunk.js"
   },
   {
-    "revision": "60f56eda3bf7923f01eb",
-    "url": "/auth/static/js/runtime-main.ac514e95.js"
+    "revision": "31ef8c941f37e2adb4bd",
+    "url": "/auth/static/js/runtime-main.f3c8567e.js"
   }
 ]);
