@@ -1,2 +1,0 @@
-(this.webpackJsonpauth=this.webpackJsonpauth||[]).push([[7],{46:function(t,e,n){"use strict";n.r(e);var a=n(0),u=n.n(a);e.default=function(){return u.a.createElement("div",{className:"fullCenter"},"404 Not Found")}}}]);
-//# sourceMappingURL=7.c13d9a2a.chunk.js.map
