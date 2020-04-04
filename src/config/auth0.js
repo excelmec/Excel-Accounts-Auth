@@ -43,6 +43,8 @@ const setSession = async (authResult, history) => {
             } else {
                 window.location.href = `${window.location.origin}/`;
             }
+        }).catch((err) => {
+            console.log('Error...', err);
         });
 };
 
