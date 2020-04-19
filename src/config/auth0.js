@@ -35,14 +35,23 @@ const setSession = async (authResult, history) => {
     return http
         .post('/auth/login', { auth_token: authResult.accessToken })
         .then(res => {
-            localStorage.setItem('jwt_token', res.token);
-            const redirectUri = localStorage.getItem('redirect_to');
-            if (redirectUri) {
-                localStorage.removeItem('redirect_to');
-                window.location.href = redirectUri;
+            const { token } = res;
+            if (typeof(token)==='string' && !!token) {
+                localStorage.setItem('jwt_token', token);
+                const redirectUri = localStorage.getItem('redirect_to');
+                if (redirectUri) {
+                    localStorage.removeItem('redirect_to');
+                    window.location.href = redirectUri;
+                } else {
+                    window.location.href = `${window.location.origin}/`;
+                }
             } else {
-                window.location.href = `${window.location.origin}/`;
+                window.location.href=`${window.location.origin}/auth/login`;
+                alert('Error');
+                throw Error('JWT not a string or empty');
             }
+        }).catch((err) => {
+            console.log('Error...', err);
         });
 };
 
