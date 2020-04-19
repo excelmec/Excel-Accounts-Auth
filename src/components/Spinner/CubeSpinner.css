@@ -6,7 +6,8 @@
 }
 
 .cube1, .cube2 {
-    background-color: #692E73;
+    /* background-color: #692E73; */
+    background:linear-gradient(60deg,#24835b,#408b44);
     width: 15px;
     height: 15px;
     position: absolute;

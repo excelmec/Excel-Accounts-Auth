@@ -46,6 +46,8 @@ const setSession = async (authResult, history) => {
                     window.location.href = `${window.location.origin}/`;
                 }
             } else {
+                window.location.href=`${window.location.origin}/auth/login`;
+                alert('Error');
                 throw Error('JWT not a string or empty');
             }
         }).catch((err) => {
