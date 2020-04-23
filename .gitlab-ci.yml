@@ -9,6 +9,8 @@ test:
   script:
     - yarn
     - CI=false yarn build
+  only:
+    - master
   except:
     - master@excel-mec/excel-accounts/Excel-Accounts-Auth
 
