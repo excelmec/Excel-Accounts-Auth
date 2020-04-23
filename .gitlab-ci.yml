@@ -1,3 +1,17 @@
+stages:
+  - test
+  - build
+  - deploy
+
+test:
+  image: node:13.5.0-alpine
+  stage: test
+  script:
+    - yarn
+    - CI=false yarn build
+  only:
+    - master
+
 build site:
   image: node:13.5.0-alpine
   stage: build
