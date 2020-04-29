@@ -12,8 +12,8 @@
   line-height: 1.333333;
   box-shadow: 0 1px 4px rgba(0, 0, 0, .6);
 
-  background-color:#409444;
-  border-color:#3d8b40;
+  background-color:#1D8DB8;
+  border-color:#1D8DB8;
   color: #fff;
   
   transition: background-color .3s;
@@ -21,6 +21,6 @@
 .btn:hover, .btn:focus {
     cursor: pointer;
     color:#fff;
-    background-color:#47a44b;
-    border-color:#39843c;
+    background-color:#006287;
+    border-color:#006287;
 }
