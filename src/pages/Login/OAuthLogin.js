@@ -1,6 +1,9 @@
 import React from 'react';
 import { GoogleLogin } from 'react-google-login';
 import http from '../../config/http';
+import configs from '../../config/oauth_config';
+
+const config = configs();
 
 const Login = () => {
     const onFailure = (error) => {
@@ -13,7 +16,7 @@ const Login = () => {
             return;
         }
 
-        http.post('/auth/login', { accessToken: response.accessToken }).then(user => {
+        http.post(config.redirectUrl, { accessToken: response.accessToken }).then(user => {
             const token = user.token;
             if (typeof (token) === 'string' && !!token) {
                 localStorage.setItem('jwt_token', token);
@@ -46,7 +49,7 @@ const Login = () => {
             <h1 className='tc auth-status-text'>Login</h1>
             <div>
                 <GoogleLogin
-                    clientId={process.env.GOOGLE_CLIENT_ID}
+                    clientId={config.clientId}
                     buttonText="Continue with Google"
                     onSuccess={googleResponse}
                     onFailure={onFailure}

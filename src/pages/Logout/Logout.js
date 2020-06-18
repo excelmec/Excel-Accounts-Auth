@@ -1,15 +1,28 @@
 import React, { useEffect } from 'react';
-// import { handleLogout } from '../../config/auth0';
+import { useGoogleLogout } from 'react-google-login';
 import CubeSpinner from '../../components/Spinner/CubeSpinner';
+import configs from '../../config/oauth_config';
 
-const Logout = (props) => {
-  const handleLogout = () => {
-    const auth2 = window.gapi.auth2.getAuthInstance();
-    auth2.signOut();
+const config = configs();
+
+const Logout = () => {
+  const onFailure = (e) => {
+    console.log('Error logging out: ', e);
   }
-  useEffect(() => {
+  const onLogoutSuccess = () => {
     const urlParams = new URLSearchParams(window.location.search);
     const redirectUrl = urlParams.get('redirect_to');
+    console.log('Successfully logged out!');
+    window.location.href = redirectUrl;
+  }
+
+  const { signOut, loaded } = useGoogleLogout({
+    onFailure,
+    onLogoutSuccess,
+    clientId: config.clientId,
+  });
+
+  useEffect(() => {
     localStorage.clear();
     var cookies = document.cookie.split(';');
 
@@ -20,7 +33,7 @@ const Logout = (props) => {
       document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:00 GMT';
     }
 
-    handleLogout();
+    signOut();
   });
 
   return (
