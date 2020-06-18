@@ -1,6 +1,6 @@
 import { ApiRoot } from './api';
 
-const post = (url, data) => {
+const post = async (url, data) => {
   const headers = {
     Accept: 'application/json',
     'Content-Type': 'application/json'
@@ -17,7 +17,7 @@ const post = (url, data) => {
     .catch(err => err);
 };
 
-const get = (url) => {
+const get = async (url) => {
   const headers = {
     Accept: 'application/json',
     'Content-Type': 'application/json'
