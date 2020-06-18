@@ -11,7 +11,9 @@ const LoginButton = () => {
   React.useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
     const redirectUrl = urlParams.get('redirect_to');
+    const referralCode = urlParams.get('referral');
     localStorage.setItem('redirect_to', redirectUrl);
+    if (referralCode) localStorage.setItem('referralCode', referralCode);
   }, []);
   return (
     <button onClick={login} className='btn'>Login</button>
