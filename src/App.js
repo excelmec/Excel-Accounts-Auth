@@ -6,7 +6,7 @@ import PrivateRoute from './routes/PrivateRoute';
 import PublicRoute from './routes/PublicRoute';
 import Loader from './components/Loader/Loader';
 
-const Login = lazy(() => import('./pages/Login/Login'));
+const Login = lazy(() => import('./pages/Login/OAuthLogin'));
 const Logout = lazy(() => import('./pages/Logout/Logout'));
 const Authorize = lazy(() => import('./pages/Authorize/Authorize'));
 const NotFound = lazy(() => import('./pages/NotFound'));
