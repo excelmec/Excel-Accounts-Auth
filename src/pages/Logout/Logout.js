@@ -16,7 +16,7 @@ const Logout = () => {
     window.location.href = redirectUrl;
   }
 
-  const { signOut, loaded } = useGoogleLogout({
+  const { signOut/*, loaded */ } = useGoogleLogout({
     onFailure,
     onLogoutSuccess,
     clientId: config.clientId,
