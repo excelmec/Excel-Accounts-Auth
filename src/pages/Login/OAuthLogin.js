@@ -8,6 +8,7 @@ const config = configs();
 const Login = () => {
     const onFailure = (error) => {
         alert(error);
+        console.log('Google login failure...', error);
     };
 
     const googleResponse = (response) => {
@@ -16,10 +17,19 @@ const Login = () => {
             return;
         }
 
-        http.post(config.redirectUrl, { accessToken: response.accessToken }).then(user => {
-            const token = user.token;
-            if (typeof (token) === 'string' && !!token) {
-                localStorage.setItem('jwt_token', token);
+        http.post(config.redirectUrl, { accessToken: response.accessToken })
+            .then(user => {
+                console.log('user: ', user);
+                const { accessToken, refreshToken } = user;
+                if (!(accessToken && refreshToken) || !(typeof (accessToken) === 'string' && typeof (refreshToken) === 'string')) {
+                    // TODO: throw some error
+                    console.log('Error...invalid jwt');
+                    alert('Invalid JWT');
+                    return;
+                }
+                console.log('setting jwt on initial login');
+                localStorage.setItem('jwt_token', accessToken);
+                localStorage.setItem('refreshToken', refreshToken);
                 const redirectUri = localStorage.getItem('redirect_to');
                 if (redirectUri) {
                     localStorage.removeItem('redirect_to');
@@ -27,13 +37,7 @@ const Login = () => {
                 } else {
                     window.location.href = `${window.location.origin}/`;
                 }
-            } else {
-                window.location.href = `${window.location.origin}/auth/login`;
-                alert('Error');
-                throw Error('JWT not a string or empty');
-            }
-
-        })
+            }).catch(err => console.log('error occurred...', err));
     };
 
     React.useEffect(() => {

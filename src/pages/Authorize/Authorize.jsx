@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 
 const Authorize = () => {
   useEffect(() => {
-    window.parent.postMessage(localStorage.getItem('jwt_token'), '*');
+    window.parent.postMessage(localStorage.getItem('refreshToken'), '*');
   }, []);
   return <h1>Hi</h1>;
 };
