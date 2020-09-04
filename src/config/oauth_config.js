@@ -14,4 +14,11 @@ const config = () => {
     }
 };
 
+export const isLoggedIn = () => {
+    if (localStorage.getItem('jwt_token')) {
+        return true;
+    }
+    return false;
+};
+
 export default config;  
