@@ -1,5 +1,10 @@
 import { ApiRoot } from './api';
 
+const getJwtTokenFromCookie = () => {
+  const decodedCookie = decodeURIComponent(document.cookie);
+  // const
+}
+
 const post = async (url, data) => {
   const headers = {
     Accept: 'application/json',
