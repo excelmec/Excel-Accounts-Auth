@@ -1,3 +1,5 @@
+import { getJwtFromCookie } from "./http";
+
 const config = () => {
     if (process.env.NODE_ENV === 'development') {
         return {
@@ -15,10 +17,8 @@ const config = () => {
 };
 
 export const isLoggedIn = () => {
-    if (localStorage.getItem('jwt_token')) {
-        return true;
-    }
-    return false;
+    const token = getJwtFromCookie()
+    return !!token;
 };
 
 export default config;  

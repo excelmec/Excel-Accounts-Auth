@@ -10,7 +10,7 @@ const setJwtInCookie = (accessToken) => {
     d.setTime(d.getTime() + (13 * 60 * 1000)); // cookie expires in 13 minutes from now. 
     const expires = "expires=" + d.toUTCString();
     document.cookie = 'token=' + accessToken
-    document.cookie = 'expires=' + expires
+    document.cookie = expires
     // const prevCookie = document.cookie;
     // document.cookie = prevCookie + ";token=" + accessToken + ';expires=' + expires;  
 }
