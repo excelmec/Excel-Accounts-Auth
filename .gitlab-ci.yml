@@ -70,10 +70,10 @@ deploy_prod:
   script:
     - apk add --no-cache rsync openssh
     - mkdir -p ~/.ssh
-    - echo "$DEVELOPMENT_SERVER_PRIVATE_KEY" >> ~/.ssh/id_dsa
+    - echo "$PRODUCTION_SERVER_PRIVATE_KEY" >> ~/.ssh/id_dsa
     - chmod 600 ~/.ssh/id_dsa
     - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
-    - rsync -rav --delete build/ $DEVELOPMENT_SERVER_USERNAME@$DEVELOPMENT_SERVER_IP:~/Excel-Accounts-Service/Excel-Accounts-Auth/build
-    - ssh $DEVELOPMENT_SERVER_USERNAME@$DEVELOPMENT_SERVER_IP docker-compose -f Excel-Accounts-Service/$DEVELOPMENT_DOCKER_COMPOSE_FILE restart
+    - rsync -rav --delete build/ $PRODUCTION_SERVER_USERNAME@$PRODUCTION_SERVER_IP:~/Excel-Accounts-Service/Excel-Accounts-Auth/build
+    - ssh $PRODUCTION_SERVER_USERNAME@$PRODUCTION_SERVER_IP docker-compose -f Excel-Accounts-Service/$PRODUCTION_DOCKER_COMPOSE_FILE restart
   only:
     - prod@excel-mec/excel-accounts/Excel-Accounts-Auth
