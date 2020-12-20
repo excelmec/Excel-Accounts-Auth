@@ -30,14 +30,14 @@ const Login = () => {
 
         http.post(config.redirectUrl, { accessToken: response.accessToken })
             .then(user => {
-                console.log('user: ', user);
+                // console.log('user: ', user);
                 const { accessToken, refreshToken } = user;
                 if (!(accessToken && refreshToken) || !(typeof (accessToken) === 'string' && typeof (refreshToken) === 'string')) {
                     console.log('Error...invalid jwt');
                     alert('Invalid JWT');
                     return;
                 }
-                console.log('setting jwt on initial login');
+                // console.log('setting jwt on initial login');
 
                 // localStorage.setItem('jwt_token', accessToken);
                 setJwtInCookie(accessToken);
