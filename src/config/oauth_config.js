@@ -17,7 +17,8 @@ const config = () => {
 };
 
 export const isLoggedIn = () => {
-    const token = getJwtFromCookie()
+    // const token = getJwtFromCookie()
+    const token = localStorage.getItem('refreshToken')
     return !!token;
 };
 
