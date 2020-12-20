@@ -1,12 +1,31 @@
 import { ApiRoot } from './api';
 
+// const getJwtTokenFromCookie = () => {
+//   const decodedCookie = decodeURIComponent(document.cookie);
+//   // const
+// }
+export const getJwtFromCookie = () => {
+  const cookies = document.cookie.split('; ')
+  for (let i = 0; i < cookies.length; i++) {
+    const cookie = cookies[i]
+    const eqPos = cookie.indexOf('=')
+    const name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie
+    if (name === 'token') {
+      const token = cookie.substr(eqPos + 1)
+      return token
+    }
+  }
+  return ''
+}
+
 const post = async (url, data) => {
   const headers = {
     Accept: 'application/json',
     'Content-Type': 'application/json'
   };
-  if (localStorage.getItem('jwt_token')) {
-    headers.Authorization = 'Bearer ' + localStorage.getItem('jwt_token');
+  const jwtToken = getJwtFromCookie();
+  if (getJwtFromCookie()) {
+    headers.Authorization = 'Bearer ' + jwtToken
   }
   return fetch(ApiRoot + url, {
     method: 'POST',
@@ -22,8 +41,9 @@ const get = async (url) => {
     Accept: 'application/json',
     'Content-Type': 'application/json'
   };
-  if (localStorage.getItem('jwt_token')) {
-    headers.Authorization = 'Bearer ' + localStorage.getItem('jwt_token');
+  const jwtToken = getJwtFromCookie();
+  if (jwtToken) {
+    headers.Authorization = 'Bearer ' + jwtToken;
   }
   return fetch(ApiRoot + url, {
     method: 'GET',

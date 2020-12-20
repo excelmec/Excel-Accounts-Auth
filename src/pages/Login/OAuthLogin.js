@@ -5,6 +5,17 @@ import configs from '../../config/oauth_config';
 
 const config = configs();
 
+const setJwtInCookie = (accessToken) => {
+    const d = new Date();
+    d.setTime(d.getTime() + (13 * 60 * 1000)); // cookie expires in 13 minutes from now. 
+    const expires = "expires=" + d.toUTCString();
+    // document.cookie = 'token=' + accessToken
+    // document.cookie = expires
+    // const prevCookie = document.cookie;
+    // document.cookie = prevCookie + ";token=" + accessToken + ';expires=' + expires;  
+    document.cookie = "token" + "=" + accessToken + ";" + expires + ";path=/";
+}
+
 const Login = () => {
     const onFailure = (error) => {
         alert(error);
@@ -19,16 +30,17 @@ const Login = () => {
 
         http.post(config.redirectUrl, { accessToken: response.accessToken })
             .then(user => {
-                console.log('user: ', user);
+                // console.log('user: ', user);
                 const { accessToken, refreshToken } = user;
                 if (!(accessToken && refreshToken) || !(typeof (accessToken) === 'string' && typeof (refreshToken) === 'string')) {
-                    // TODO: throw some error
                     console.log('Error...invalid jwt');
                     alert('Invalid JWT');
                     return;
                 }
-                console.log('setting jwt on initial login');
-                localStorage.setItem('jwt_token', accessToken);
+                // console.log('setting jwt on initial login');
+
+                // localStorage.setItem('jwt_token', accessToken);
+                setJwtInCookie(accessToken);
                 localStorage.setItem('refreshToken', refreshToken);
                 const redirectUri = localStorage.getItem('redirect_to');
                 if (redirectUri) {

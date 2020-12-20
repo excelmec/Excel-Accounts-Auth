@@ -1,3 +1,5 @@
+import { getJwtFromCookie } from "./http";
+
 const config = () => {
     if (process.env.NODE_ENV === 'development') {
         return {
@@ -12,6 +14,12 @@ const config = () => {
             redirectUrl: '/auth/login'
         };
     }
+};
+
+export const isLoggedIn = () => {
+    // const token = getJwtFromCookie()
+    const token = localStorage.getItem('refreshToken')
+    return !!token;
 };
 
 export default config;  
