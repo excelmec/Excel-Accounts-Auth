@@ -1,5 +1,5 @@
 import React from 'react';
-import { isLoggedIn } from '../config/auth0';
+import { isLoggedIn } from '../config/oauth_config';
 import { Route, Redirect } from 'react-router-dom';
 
 const PrivateRoute = ({
@@ -11,8 +11,8 @@ const PrivateRoute = ({
             isLoggedIn() ? (
                 <Component {...props} />
             ) : (
-                <Redirect to='/auth/login' />
-            )
+                    <Redirect to='/auth/login' />
+                )
         )} />
     );
 }
