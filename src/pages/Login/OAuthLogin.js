@@ -13,7 +13,7 @@ const setJwtInCookie = (accessToken) => {
     // document.cookie = expires
     // const prevCookie = document.cookie;
     // document.cookie = prevCookie + ";token=" + accessToken + ';expires=' + expires;  
-    document.cookie = "token" + "=" + accessToken + ";" + expires + ";path=/";
+    document.cookie = "token=" + accessToken + ";" + expires + ";path=/";
 }
 
 const Login = () => {

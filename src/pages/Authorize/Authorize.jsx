@@ -15,9 +15,12 @@ const authorizedSites = [
 const Authorize = () => {
   useEffect(() => {
     // window.parent.postMessage(localStorage.getItem('refreshToken'), '*');
-    window.parent.postMessage(localStorage.getItem('refreshToken'), authorizedSites.join(', '))
+    // window.parent.postMessage(localStorage.getItem('refreshToken'), authorizedSites.join(', '))
+    authorizedSites.forEach(authorizedSite => {
+      window.parent.postMessage(localStorage.getItem('refreshToken'), authorizedSite)
+    })
   }, []);
-  return <h1>Hi</h1>;
+  return <h1 className='white'>Hi</h1>;
 };
 
 export default Authorize;
