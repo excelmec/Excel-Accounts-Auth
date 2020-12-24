@@ -1,4 +1,4 @@
-import { getJwtFromCookie } from "./http";
+// import { getJwtFromCookie } from "./http";
 
 const config = () => {
     if (process.env.NODE_ENV === 'development') {

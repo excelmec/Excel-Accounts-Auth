@@ -5,6 +5,11 @@ import configs from '../../config/oauth_config';
 
 const config = configs();
 
+window.addEventListener('error', (event) => {
+    console.log('Error: ', event);
+    alert('Error event msg: ', event.message);
+})
+
 const setJwtInCookie = (accessToken) => {
     const d = new Date();
     d.setTime(d.getTime() + (13 * 60 * 1000)); // cookie expires in 13 minutes from now. 
@@ -13,12 +18,12 @@ const setJwtInCookie = (accessToken) => {
     // document.cookie = expires
     // const prevCookie = document.cookie;
     // document.cookie = prevCookie + ";token=" + accessToken + ';expires=' + expires;  
-    document.cookie = "token" + "=" + accessToken + ";" + expires + ";path=/";
+    document.cookie = "token=" + accessToken + ";" + expires + ";path=/";
 }
 
 const Login = () => {
     const onFailure = (error) => {
-        alert(error);
+        alert(JSON.stringify(error));
         console.log('Google login failure...', error);
     };
 
