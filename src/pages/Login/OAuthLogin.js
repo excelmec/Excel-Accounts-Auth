@@ -58,8 +58,9 @@ const Login = () => {
     };
 
     React.useEffect(() => {
-        const urlParams = new URLSearchParams(window.location.search);
-        const redirectUrl = urlParams.get('redirect_to');
+        const searchString = window.location.href.slice(window.location.href.indexOf('?'))
+        const urlParams = new URLSearchParams(searchString);
+        const redirectUrl = urlParams.get('redirect_to'); // TODO: check if redirectUrl is null. 
         const referralCode = urlParams.get('referral');
         localStorage.setItem('redirect_to', redirectUrl);
         if (referralCode) localStorage.setItem('referralCode', referralCode);
