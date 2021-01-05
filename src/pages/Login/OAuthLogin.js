@@ -23,7 +23,12 @@ const setJwtInCookie = (accessToken) => {
 
 const Login = () => {
     const onFailure = (error) => {
-        alert(JSON.stringify(error));
+        // alert(JSON.stringify(error));
+        try {
+            alert(`Error: ${error.error.split('_').join(' ')}`);
+        } catch (e) {
+            alert('Please enable cookies if you are in private mode. ')
+        }
         console.log('Google login failure...', error);
     };
 
@@ -60,7 +65,7 @@ const Login = () => {
     React.useEffect(() => {
         const searchString = window.location.href.slice(window.location.href.indexOf('?'))
         const urlParams = new URLSearchParams(searchString);
-        const redirectUrl = urlParams.get('redirect_to'); // TODO: check if redirectUrl is null. 
+        const redirectUrl = urlParams.get('redirect_to'); // check if redirectUrl is null. 
         const referralCode = urlParams.get('referral');
         localStorage.setItem('redirect_to', redirectUrl);
         if (referralCode) localStorage.setItem('referralCode', referralCode);
