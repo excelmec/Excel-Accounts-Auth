@@ -1,6 +1,6 @@
 {
   "name": "auth",
-  "homepage": "/auth",
+  "homepage": "/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -14,8 +14,8 @@
     "react-scripts": "3.4.0"
   },
   "scripts": {
-    "start": "PUBLIC_URL=/auth react-scripts start",
-    "build": "PUBLIC_URL=/auth react-scripts build",
+    "start": "PUBLIC_URL=/ react-scripts start",
+    "build": "PUBLIC_URL=/ react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
