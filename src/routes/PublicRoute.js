@@ -16,7 +16,8 @@ const PublicRoute = ({
     //     window.location.href = `${origin}/`;
     // else
     //     window.location.href = 'http://localhost:3000/';
-    window.location.href = 'http://localhost:3000/';
+    // window.location.href = 'http://localhost:3000/';
+    window.location.href = 'https://accounts.excelmec.org/'
     return <h2 className='fullCenter' style={{ color: 'white' }}>Already logged in</h2>;
 }
 
