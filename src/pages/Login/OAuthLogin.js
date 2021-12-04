@@ -55,7 +55,7 @@ const Login = () => {
                 const redirectUri = localStorage.getItem('redirect_to');
                 if (redirectUri) {
                     localStorage.removeItem('redirect_to');
-                    window.location.href = redirectUri;
+                    window.location.href = `${redirectUri}?refreshToken=${refreshToken}`;
                 } else {
                     window.location.href = `${window.location.origin}/`;
                 }
