@@ -18,10 +18,18 @@ const PublicRoute = ({
     //     window.location.href = 'http://localhost:3000/';
     // window.location.href = 'http://localhost:3000/';
     // window.location.href = 'https://accounts.excelmec.org/'
-    if (origin === 'http://localhost:3001')
-        window.location.href = 'http://localhost:3000/';
-    else
-        window.location.href = 'https://accounts.excelmec.org/'
+    // if (origin === 'http://localhost:3001')
+    // //     window.location.href = 'http://localhost:3000/';
+    // else {
+        let rt = new URL(window.location.href).searchParams.get('redirect_to');
+        if (!rt) {
+            window.location.href = 'https://accounts.excelmec.org/'
+        }
+        else {
+            const refreshToken = window.localStorage.getItem('refreshToken')
+            window.location.replace(`${rt}?refreshToken=${refreshToken}`)
+         }
+    // }
     return <h2 className='fullCenter' style={{ color: 'white' }}>Already logged in</h2>;
 }
 
