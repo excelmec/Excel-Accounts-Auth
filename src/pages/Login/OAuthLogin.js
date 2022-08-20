@@ -1,5 +1,5 @@
 import React from 'react';
-import { GoogleLogin } from 'react-google-login';
+import { GoogleLogin, GoogleOAuthProvider, useGoogleLogin } from '@react-oauth/google';
 import http from '../../config/http';
 import configs from '../../config/oauth_config';
 
@@ -21,6 +21,8 @@ const setJwtInCookie = (accessToken) => {
     document.cookie = "token=" + accessToken + ";" + expires + ";path=/";
 }
 
+
+
 const Login = () => {
     const onFailure = (error) => {
         // alert(JSON.stringify(error));
@@ -31,14 +33,17 @@ const Login = () => {
         }
         console.log('Google login failure...', error);
     };
-
+    const googleLogin = useGoogleLogin({
+        onSuccess: tokenResponse => console.log(tokenResponse),
+    });
     const googleResponse = (response) => {
-        if (!response.tokenId) {
+        if (!response.credential) {
             console.error('Unable to get tokenId from Google', response)
             return;
         }
+        console.log(response)
 
-        http.post(config.redirectUrl, { accessToken: response.accessToken })
+        http.post(config.redirectUrl, { accessToken: response.credential })
             .then(user => {
                 // console.log('user: ', user);
                 const { accessToken, refreshToken } = user;
@@ -75,15 +80,23 @@ const Login = () => {
         <div className='fullCenter'>
             <h1 className='tc auth-status-text'>Login</h1>
             <div>
-                <GoogleLogin
-                    clientId={config.clientId}
-                    buttonText="Continue with Google"
+
+                {/* <GoogleLogin
                     onSuccess={googleResponse}
-                    onFailure={onFailure}
-                />
+                    onError={onFailure}
+                /> */}
+                    <button onClick={() => googleLogin()}>Google login</button>
             </div>
         </div>
     );
 };
 
-export default Login;
+const LoginComponent = () => {
+    return(
+        <GoogleOAuthProvider clientId={config.clientId}>
+            <Login />
+        </GoogleOAuthProvider>
+    )
+}
+
+export default LoginComponent;
