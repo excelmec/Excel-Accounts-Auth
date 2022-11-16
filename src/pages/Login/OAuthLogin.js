@@ -1,5 +1,5 @@
 import React from 'react';
-import { GoogleLogin, GoogleOAuthProvider, useGoogleLogin } from '@react-oauth/google';
+import { GoogleLogin, GoogleOAuthProvider, useGoogleLogin, useGoogleOneTapLogin } from '@react-oauth/google';
 import http from '../../config/http';
 import configs from '../../config/oauth_config';
 
@@ -34,14 +34,14 @@ const Login = () => {
         console.log('Google login failure...', error);
     };
     const googleLogin = useGoogleLogin({
-        onSuccess: tokenResponse => console.log(tokenResponse),
+        onSuccess: tokenResponse => googleResponse({credential:tokenResponse.access_token}),
     });
     const googleResponse = (response) => {
+        console.log(response)
         if (!response.credential) {
             console.error('Unable to get tokenId from Google', response)
             return;
         }
-        console.log(response)
 
         http.post(config.redirectUrl, { accessToken: response.credential })
             .then(user => {
@@ -55,6 +55,7 @@ const Login = () => {
                 // console.log('setting jwt on initial login');
 
                 // localStorage.setItem('jwt_token', accessToken);
+                console.log("Successfull",accessToken)
                 setJwtInCookie(accessToken);
                 localStorage.setItem('refreshToken', refreshToken);
                 const redirectUri = localStorage.getItem('redirect_to');
