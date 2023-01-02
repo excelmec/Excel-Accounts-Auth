@@ -61,7 +61,7 @@ const Login = () => {
                 const redirectUri = localStorage.getItem('redirect_to');
                 console.log(redirectUri);
                 debugger;
-                if (JSON.parse(redirectUri)) {
+                if (redirectUri) {
                     localStorage.removeItem('redirect_to');
                     window.location.href = `${redirectUri}?refreshToken=${refreshToken}`;
                 } else {
