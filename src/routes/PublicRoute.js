@@ -27,7 +27,14 @@ const PublicRoute = ({
         }
         else {
             const refreshToken = window.localStorage.getItem('refreshToken')
-            window.location.replace(`${rt}?refreshToken=${refreshToken}`)
+            if (rt.indexOf("http://") == 0 || rt.indexOf("https://") == 0) {
+                window.location.href = `${rt}?refreshToken=${refreshToken}`
+            }
+            else{
+                window.location.href = `https://${rt}?refreshToken=${refreshToken}`
+
+            }
+           
          }
     // }
     return <h2 className='fullCenter' style={{ color: 'white' }}>Already logged in</h2>;

@@ -59,11 +59,13 @@ const Login = () => {
                 setJwtInCookie(accessToken);
                 localStorage.setItem('refreshToken', refreshToken);
                 const redirectUri = localStorage.getItem('redirect_to');
-                if (redirectUri) {
+                console.log(redirectUri);
+                debugger;
+                if (JSON.parse(redirectUri)) {
                     localStorage.removeItem('redirect_to');
                     window.location.href = `${redirectUri}?refreshToken=${refreshToken}`;
                 } else {
-                    window.location.href = `${window.location.origin}/`;
+                    window.location.href = `https://accounts.excelmec.org`;
                 }
             }).catch(err => console.log('error occurred...', err));
     };
@@ -94,7 +96,7 @@ const Login = () => {
 
 const LoginComponent = () => {
     return(
-        <GoogleOAuthProvider clientId={config.clientId}>
+        <GoogleOAuthProvider clientId={'136459835955-hqmdecr92va0dnomttvnsfnmm0kmjsbq.apps.googleusercontent.com'}>
             <Login />
         </GoogleOAuthProvider>
     )
