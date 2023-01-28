@@ -2,7 +2,7 @@ import React from 'react';
 import { GoogleLogin, GoogleOAuthProvider, useGoogleLogin, useGoogleOneTapLogin } from '@react-oauth/google';
 import http from '../../config/http';
 import configs from '../../config/oauth_config';
-
+import logo from '../../assets/logotext.png'
 const config = configs();
 
 window.addEventListener('error', (event) => {
@@ -80,16 +80,15 @@ const Login = () => {
     }, []);
 
     return (
-        <div className='fullCenter'>
-            <h1 className='tc auth-status-text'>Login</h1>
-            <div>
-
-                {/* <GoogleLogin
-                    onSuccess={googleResponse}
-                    onError={onFailure}
-                /> */}
-                    <button onClick={() => googleLogin()}>Google login</button>
-            </div>
+        <div style={{ width:'100%', height:'100vh', display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', backgroundColor: '#082743'}}>
+            <img src={logo} width="20%"/>
+            <div style={{height: '20vh'}}></div>
+            <div class="google-btn" style={{cursor: 'pointer'}} onClick={() => googleLogin()}>
+  <div class="google-icon-wrapper">
+    <img class="google-icon" src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"/>
+  </div>
+  <p class="btn-text"><b>Sign in with google</b></p>
+</div>
         </div>
     );
 };
