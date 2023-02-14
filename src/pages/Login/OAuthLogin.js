@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { GoogleLogin, GoogleOAuthProvider, useGoogleLogin, useGoogleOneTapLogin } from '@react-oauth/google';
 import http from '../../config/http';
 import configs from '../../config/oauth_config';
 import logo from '../../assets/logotext.png'
+import './Login.css'
 const config = configs();
+
 
 window.addEventListener('error', (event) => {
     console.log('Error: ', event);
@@ -24,6 +26,7 @@ const setJwtInCookie = (accessToken) => {
 
 
 const Login = () => {
+    const [mobile, setMobile] = useState(false)
     const onFailure = (error) => {
         // alert(JSON.stringify(error));
         try {
@@ -34,7 +37,7 @@ const Login = () => {
         console.log('Google login failure...', error);
     };
     const googleLogin = useGoogleLogin({
-        onSuccess: tokenResponse => googleResponse({credential:tokenResponse.access_token}),
+        onSuccess: tokenResponse => googleResponse({ credential: tokenResponse.access_token }),
     });
     const googleResponse = (response) => {
         console.log(response)
@@ -55,7 +58,7 @@ const Login = () => {
                 // console.log('setting jwt on initial login');
 
                 // localStorage.setItem('jwt_token', accessToken);
-                console.log("Successfull",accessToken)
+                console.log("Successfull", accessToken)
                 setJwtInCookie(accessToken);
                 localStorage.setItem('refreshToken', refreshToken);
                 const redirectUri = localStorage.getItem('redirect_to');
@@ -71,6 +74,10 @@ const Login = () => {
     };
 
     React.useEffect(() => {
+        let width = window.innerWidth;
+        if(width<800){
+            setMobile(true);
+        }
         const searchString = window.location.href.slice(window.location.href.indexOf('?'))
         const urlParams = new URLSearchParams(searchString);
         const redirectUrl = urlParams.get('redirect_to'); // check if redirectUrl is null. 
@@ -80,21 +87,21 @@ const Login = () => {
     }, []);
 
     return (
-        <div style={{ width:'100%', height:'100vh', display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', backgroundColor: '#082743'}}>
-            <img src={logo} width="20%"/>
-            <div style={{height: '20vh'}}></div>
-            <div class="google-btn" style={{cursor: 'pointer'}} onClick={() => googleLogin()}>
-  <div class="google-icon-wrapper">
-    <img class="google-icon" src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"/>
-  </div>
-  <p class="btn-text"><b>Sign in with google</b></p>
-</div>
+        <div className='loginPage' style={{ width: '100%', height: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
+            <img src={logo} width={mobile ? "60%" : "30%"} />
+            <div style={{ height: '20vh' }}></div>
+            <div class="google-btn" style={{ cursor: 'pointer' }} onClick={() => googleLogin()}>
+                <div class="google-icon-wrapper">
+                    <img class="google-icon" src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" />
+                </div>
+                <p class="btn-text"><b>Sign in with google</b></p>
+            </div>
         </div>
     );
 };
 
 const LoginComponent = () => {
-    return(
+    return (
         <GoogleOAuthProvider clientId={'136459835955-hqmdecr92va0dnomttvnsfnmm0kmjsbq.apps.googleusercontent.com'}>
             <Login />
         </GoogleOAuthProvider>

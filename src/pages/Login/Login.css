@@ -1,5 +1,15 @@
 .loginPage {
     text-align: center;
+    background-image: url("../../assets/bg_grains.svg"), url("../../assets/bg_lines.svg");
+    background-color: #02121C; 
+    background-position: center; 
+    background-repeat: repeat;
+    background-size: cover;
+    -webkit-animation: backgroundScroll 15s linear infinite;
+    -webkit-animation-fill-mode: forwards;
+    animation: backgroundScroll 15s linear infinite;
+    animation-fill-mode: forwards;  
+    min-height: 100vh;
 }
 
 .btn {
@@ -24,3 +34,37 @@
     background-color:#006287;
     border-color:#006287;
 }
+
+.google-btn {
+  width: 263px;
+  height: 60px;
+  background-color: #4285f4;
+  border-radius: 2px;
+  box-shadow: 0 3px 4px 0 rgba(0,0,0,.25);
+}
+  .google-icon-wrapper {
+    position: absolute;
+    margin-top: 1px;
+    margin-left: 1px;
+    width: 59px;
+    height: 59px;
+    border-radius: 2px;
+    background-color: #fff;
+  }
+  .google-icon {
+    position: absolute;
+    margin-top: 18px;
+    margin-left: -12px;
+    width: 24px;
+    height: 24px;
+  }
+  .btn-text {
+    float: right;
+    margin: 18px 30px 0 0;
+    color: #fff;
+    font-size: 18px;
+    letter-spacing: 0.2px;
+    font-family: "Roboto";
+  }
+
+@import url(https://fonts.googleapis.com/css?family=Roboto:500);
