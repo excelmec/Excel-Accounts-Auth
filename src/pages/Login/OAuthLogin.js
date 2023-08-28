@@ -46,6 +46,28 @@ const Login = () => {
             return;
         }
 
+        /**
+         * This is the redirectUri to which the user 
+         * will be redirected after successful login.
+         * eg: excel main page, account page, etc.
+         */
+        const redirectUri = localStorage.getItem('redirect_to');
+        console.log(redirectUri);
+
+        /**
+         * This is to test the signup flow in development,
+         * without triggering it from Frontend.
+         */
+        if (
+            process.env.REACT_APP_ENVIRONMENT === 'development' &&
+            redirectUri &&
+            redirectUri === "copy_g_access_token"
+        ) {
+            prompt('Copy the google access token', response.credential);
+            localStorage.removeItem('redirect_to');
+            return;
+        }
+
         http.post(config.redirectUrl, { accessToken: response.credential })
             .then(user => {
                 // console.log('user: ', user);
@@ -61,8 +83,27 @@ const Login = () => {
                 console.log("Successfull", accessToken)
                 setJwtInCookie(accessToken);
                 localStorage.setItem('refreshToken', refreshToken);
-                const redirectUri = localStorage.getItem('redirect_to');
-                console.log(redirectUri);
+
+                if (
+                    process.env.REACT_APP_ENVIRONMENT === 'development' &&
+                    redirectUri &&
+                    redirectUri === "copy_access_token"
+                ) {
+                    prompt('Copy the access token', accessToken);
+                    localStorage.removeItem('redirect_to');
+                    return;
+                }
+
+                if (
+                    process.env.REACT_APP_ENVIRONMENT === 'development' &&
+                    redirectUri &&
+                    redirectUri === "copy_refresh_token"
+                ) {
+                    prompt('Copy the refresh token', refreshToken);
+                    localStorage.removeItem('redirect_to');
+                    return;
+                }
+
                 debugger;
                 if (redirectUri) {
                     localStorage.removeItem('redirect_to');
@@ -75,7 +116,7 @@ const Login = () => {
 
     React.useEffect(() => {
         let width = window.innerWidth;
-        if(width<800){
+        if (width < 800) {
             setMobile(true);
         }
         const searchString = window.location.href.slice(window.location.href.indexOf('?'))
@@ -87,7 +128,7 @@ const Login = () => {
     }, []);
 
     return (
-        <div className='loginPage' style={{ width: '100%', height: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
+        <div className='loginPage' style={{ width: '100%', height: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
             <img src={logo} width={mobile ? "60%" : "30%"} />
             <div style={{ height: '20vh' }}></div>
             <div class="google-btn" style={{ cursor: 'pointer' }} onClick={() => googleLogin()}>
