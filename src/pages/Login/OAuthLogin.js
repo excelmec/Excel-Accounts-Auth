@@ -143,7 +143,7 @@ const Login = () => {
 
 const LoginComponent = () => {
     return (
-        <GoogleOAuthProvider clientId={'136459835955-hqmdecr92va0dnomttvnsfnmm0kmjsbq.apps.googleusercontent.com'}>
+        <GoogleOAuthProvider clientId={config.clientId}>
             <Login />
         </GoogleOAuthProvider>
     )
