@@ -2,13 +2,13 @@
 
 const config = () => {
 
-    if(!process.env.REACT_APP_GOOGLE_CLIENT_ID) {
+    if (!process.env.REACT_APP_GOOGLE_CLIENT_ID) {
         throw new Error("REACT_APP_GOOGLE_CLIENT_ID not set");
     }
-    
+
     return {
         clientId: process.env.REACT_APP_GOOGLE_CLIENT_ID,
-        redirectUrl: '/auth/login'
+        redirectUrl: '/api/auth/login'
     }
 
     // if (process.env.NODE_ENV === 'development') {
