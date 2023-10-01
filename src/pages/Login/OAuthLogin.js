@@ -115,7 +115,7 @@ const Login = () => {
                     }
                     redirectParams.append("refreshToken", refreshToken);
                     redirectUrl.search = redirectParams.toString();
-                    window.location.href = `${redirectUrl.pathname}?${redirectUrl.search}`;
+                    window.location.href = redirectUrl.toString();
                 } else {
                     window.location.href = `https://accounts.excelmec.org`;
                 }
