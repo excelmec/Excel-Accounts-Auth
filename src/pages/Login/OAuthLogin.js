@@ -109,7 +109,7 @@ const Login = () => {
                     localStorage.removeItem('redirect_to');
 
                     const redirectUrl = new URL(redirectUri);
-                    const redirectParams = new URLSearchParams(redirectUri.search);
+                    const redirectParams = new URLSearchParams(redirectUrl.search);
                     if (redirectParams.has("refreshToken")) {
                         redirectParams.delete("refreshToken");
                     }
