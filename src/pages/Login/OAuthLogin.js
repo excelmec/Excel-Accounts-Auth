@@ -107,7 +107,15 @@ const Login = () => {
                 debugger;
                 if (redirectUri) {
                     localStorage.removeItem('redirect_to');
-                    window.location.href = `${redirectUri}?refreshToken=${refreshToken}`;
+
+                    const redirectUrl = new URL(redirectUri);
+                    const redirectParams = new URLSearchParams(redirectUri.search);
+                    if (redirectParams.has("refreshToken")) {
+                        redirectParams.delete("refreshToken");
+                    }
+                    redirectParams.append("refreshToken", refreshToken);
+                    redirectUrl.search = redirectParams.toString();
+                    window.location.href = `${redirectUrl.pathname}?${redirectUrl.search}`;
                 } else {
                     window.location.href = `https://accounts.excelmec.org`;
                 }
