@@ -11,28 +11,26 @@ const PublicRoute = ({
             <Component {...props} />
         )} />
     );
-    const { origin } = window.location;
-    // if (origin !== 'http://localhost:1000')
-    //     window.location.href = `${origin}/`;
-    // else
-    //     window.location.href = 'http://localhost:3000/';
-    // window.location.href = 'http://localhost:3000/';
-    // window.location.href = 'https://accounts.excelmec.org/'
-    // if (origin === 'http://localhost:3001')
-    // //     window.location.href = 'http://localhost:3000/';
-    // else {
         let rt = new URL(window.location.href).searchParams.get('redirect_to');
         if (!rt) {
             window.location.href = 'https://accounts.excelmec.org/'
         }
         else {
+            const redirectUrl = new URL(decodeURIComponent(rt));
+            const urlParams = new URLSearchParams(redirectUrl.search);
             const refreshToken = window.localStorage.getItem('refreshToken')
+
+            if(urlParams.has("refreshToken")){
+                urlParams.delete("refreshToken");
+            }
+            urlParams.append("refreshToken", refreshToken);
+            redirectUrl.search = urlParams.toString();
+
             if (rt.indexOf("http://") == 0 || rt.indexOf("https://") == 0) {
-                window.location.href = `${rt}?refreshToken=${refreshToken}`
+                window.location.href = `${redirectUrl.pathname}?${redirectUrl.search}`
             }
             else{
-                window.location.href = `https://${rt}?refreshToken=${refreshToken}`
-
+                window.location.href = `https://${redirectUrl.pathname}?${redirectUrl.search}`
             }
            
          }
