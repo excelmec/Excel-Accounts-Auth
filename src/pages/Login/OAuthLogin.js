@@ -51,7 +51,7 @@ const Login = () => {
          * will be redirected after successful login.
          * eg: excel main page, account page, etc.
          */
-        const redirectUri = localStorage.getItem('redirect_to');
+        const redirectUri = decodeURIComponent(localStorage.getItem('redirect_to'));
         console.log(redirectUri);
 
         /**
@@ -131,7 +131,7 @@ const Login = () => {
         const urlParams = new URLSearchParams(searchString);
         const redirectUrl = urlParams.get('redirect_to'); // check if redirectUrl is null. 
         const referralCode = urlParams.get('referral');
-        localStorage.setItem('redirect_to', redirectUrl);
+        localStorage.setItem('redirect_to', decodeURIComponent(redirectUrl));
         if (referralCode) localStorage.setItem('referralCode', referralCode);
     }, []);
 
