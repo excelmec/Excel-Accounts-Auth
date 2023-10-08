@@ -1,5 +1,8 @@
 import React, { useEffect } from "react";
 import { authorizedSites } from "../../config/authorized";
+import Cookies from "universal-cookie";
+
+const cookies = new Cookies();
 
 const Authorize = () => {
   useEffect(() => {
@@ -20,7 +23,12 @@ const Authorize = () => {
         origin: e.origin,
       };
       data.isLoggedin = false;
-      const refreshToken = localStorage.getItem("refreshToken");
+
+      // local storage was not being shared betweeen the iframe
+      //  and auth-dev page, so using cookies instead
+      // const refreshToken = localStorage.getItem("refreshToken");
+
+      const refreshToken = cookies.get("refreshToken");
       if (refreshToken) {
         data.refreshToken = refreshToken;
         data.isLoggedin = true;
