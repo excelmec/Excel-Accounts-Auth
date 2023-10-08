@@ -1,41 +1,45 @@
-import React, { useEffect } from "react";
-import { authorizedSites } from "../../config/authorized";
-import { cookies } from "../../config/cookie";
+import React, { useEffect } from 'react';
+import { authorizedSites } from '../../config/authorized';
+import { cookies } from '../../config/cookie';
 
 const Authorize = () => {
-  useEffect(() => {
-    window.onmessage = function (e) {
-      var parent = window.parent;
-      var url =
-        window.location !== window.parent.location
-          ? document.referrer
-          : document.location.href;
+	useEffect(() => {
+		const payload = {
+			origin: window.location.origin,
+			isLoggedin: false,
+			refreshToken: undefined,
+		};
 
-      //Prevent Unauthorized access
-      if (!authorizedSites.has(url)) {
-        console.log("Unauthorized access from " + url);
-        return;
-      }
+		function construstRefreshPayload() {
+			const refreshToken = cookies.get('refreshToken');
+			if (refreshToken) {
+				payload.isLoggedin = true;
+				payload.refreshToken = refreshToken;
+			}
+		}
 
-      var data = {
-        origin: e.origin,
-      };
-      data.isLoggedin = false;
+		if (window !== window.parent) {
+			window.onmessage = function (e) {
+				//Prevent Unauthorized access
+				const url = new URL(
+					window.location != window.parent.location
+						? document.referrer
+						: document.location.href
+				);
 
-      // local storage was not being shared betweeen the iframe
-      //  and auth-dev page, so using cookies instead
-      // const refreshToken = localStorage.getItem("refreshToken");
-
-      const refreshToken = cookies.get("refreshToken");
-      if (refreshToken) {
-        data.refreshToken = refreshToken;
-        data.isLoggedin = true;
-      }
-
-      parent.postMessage(JSON.stringify(data), "*");
-    };
-  }, []);
-  return <></>;
+				if (!authorizedSites.has(url.origin)) {
+					console.log('Unauthorized access from ' + url);
+					return;
+				}
+				construstRefreshPayload();
+				window.parent.postMessage(JSON.stringify(payload), '*');
+			};
+		} else {
+			construstRefreshPayload();
+			console.log('refresh payload', payload);
+		}
+	}, []);
+	return <></>;
 };
 
 export default Authorize;
