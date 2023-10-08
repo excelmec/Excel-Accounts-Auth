@@ -16,6 +16,10 @@ const Authorize = () => {
 				payload.isLoggedin = true;
 				payload.refreshToken = refreshToken;
 			}
+
+      console.log('payload', payload);
+
+      console.log("all cookies", cookies.getAll());
 		}
 
 		if (window !== window.parent) {
@@ -36,7 +40,6 @@ const Authorize = () => {
 			};
 		} else {
 			construstRefreshPayload();
-			console.log('refresh payload', payload);
 		}
 	}, []);
 	return <></>;
