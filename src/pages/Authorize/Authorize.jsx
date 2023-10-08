@@ -1,8 +1,6 @@
 import React, { useEffect } from "react";
 import { authorizedSites } from "../../config/authorized";
-import Cookies from "universal-cookie";
-
-const cookies = new Cookies();
+import { cookies } from "../../config/cookie";
 
 const Authorize = () => {
   useEffect(() => {

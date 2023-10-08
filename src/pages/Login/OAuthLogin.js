@@ -4,14 +4,11 @@ import http from '../../config/http';
 import configs from '../../config/oauth_config';
 import logo from '../../assets/logotext.png'
 import './Login.css'
-import Cookies from 'universal-cookie';
+import { cookies } from '../../config/cookie';
+
 const config = configs();
 
-const cookies = new Cookies(null, {
-    httpOnly: false,
-    secure: false,
-    sameSite: 'strict'
-});
+
 
 window.addEventListener('error', (event) => {
     console.log('Error: ', event);
