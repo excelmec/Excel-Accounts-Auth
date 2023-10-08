@@ -4,23 +4,26 @@ import http from '../../config/http';
 import configs from '../../config/oauth_config';
 import logo from '../../assets/logotext.png'
 import './Login.css'
+import Cookies from 'universal-cookie';
 const config = configs();
 
+const cookies = new Cookies(null, {
+    httpOnly: false,
+    secure: false,
+    sameSite: 'strict'
+});
 
 window.addEventListener('error', (event) => {
     console.log('Error: ', event);
     alert('Error event msg: ', event.message);
 })
 
-const setJwtInCookie = (accessToken) => {
-    const d = new Date();
-    d.setTime(d.getTime() + (13 * 60 * 1000)); // cookie expires in 13 minutes from now. 
-    const expires = "expires=" + d.toUTCString();
-    // document.cookie = 'token=' + accessToken
-    // document.cookie = expires
-    // const prevCookie = document.cookie;
-    // document.cookie = prevCookie + ";token=" + accessToken + ';expires=' + expires;  
-    document.cookie = "token=" + accessToken + ";" + expires + ";path=/";
+const setRefreshTokenCookie = (refreshToken) => {
+
+    const oneYear = (60 * 60 * 24 * 365) - 1000;
+    cookies.set('refreshToken', refreshToken, {
+        maxAge: oneYear,
+    })
 }
 
 
@@ -77,11 +80,10 @@ const Login = () => {
                     alert('Invalid JWT');
                     return;
                 }
-                // console.log('setting jwt on initial login');
 
-                // localStorage.setItem('jwt_token', accessToken);
                 console.log("Successfull", accessToken)
-                setJwtInCookie(accessToken);
+
+                setRefreshTokenCookie(refreshToken);
                 localStorage.setItem('refreshToken', refreshToken);
 
                 if (

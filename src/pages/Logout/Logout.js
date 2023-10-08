@@ -1,10 +1,19 @@
 import React, { useEffect } from 'react';
 import logo from '../../assets/logotext.png'
+import Cookies from 'universal-cookie';
+
+const cookies = new Cookies(null, {
+  httpOnly: false,
+  secure: false,
+  sameSite: 'strict'
+});
+
 const Logout = () => {
   
 
   useEffect(() => {
     localStorage.clear();
+    cookies.remove('refreshToken');
     setTimeout(() => {
       const urlParams = new URLSearchParams(window.location.search);
       const redirectUrl = urlParams.get('redirect_to');
