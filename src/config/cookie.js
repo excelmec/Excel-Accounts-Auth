@@ -2,7 +2,7 @@ import Cookies from "universal-cookie";
 
 const cookies = new Cookies(null, {
     httpOnly: false,
-    secure: false,
+    secure: true,
     sameSite: 'none',
     path: '/'
 });

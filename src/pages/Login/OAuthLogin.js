@@ -16,7 +16,7 @@ window.addEventListener('error', (event) => {
 })
 
 const setRefreshTokenCookie = (refreshToken) => {
-
+    console.log('Setting refresh token cookie...');
     const oneYear = (60 * 60 * 24 * 365) - 1000;
     cookies.set('refreshToken', refreshToken, {
         maxAge: oneYear,
