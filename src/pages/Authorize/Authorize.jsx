@@ -1,34 +1,48 @@
 import React, { useEffect } from 'react';
-
-// const authorizedSites = new Set([
-//   'http://localhost',
-//   'http://localhost:3000',
-//   'http://localhost:5000',
-//   'http://127.0.0.1:8080',
-//   'https://staging.alfred.excelmec.org',
-//   'https://alfred.excelmec.org',
-//   'https://excelmec.org',
-//   'https://staging.play.excelmec.org',
-//   'https://play.excelmec.org',
-//   'https://excel2020.netlify.app'
-// ])
+import { authorizedSites } from '../../config/authorized';
+import { cookies } from '../../config/cookie';
 
 const Authorize = () => {
-  useEffect(() => {
-    // console.log('Parent hostname', window.parent.location.hostname)
-    window.parent.postMessage(localStorage.getItem('refreshToken'), '*');
-    // const url = (window.location != window.parent.location)
-    //   ? document.referrer
-    //   : document.location.hostname;
-    // authorizedSites.forEach(authorizedSite => {
-    //   window.parent.postMessage(localStorage.getItem('refreshToken'), authorizedSite)
-    // })
-    // if (url in authorizedSites) {
-    //   window.parent.postMessage(localStorage.getItem('refreshToken'), url);
-    // }
+	useEffect(() => {
+		const payload = {
+			origin: window.location.origin,
+			isLoggedin: false,
+			refreshToken: undefined,
+		};
 
-  }, []);
-  return <h1 className='white'>Hi</h1>;
+		function construstRefreshPayload() {
+			const refreshToken = cookies.get('refreshToken');
+			if (refreshToken) {
+				payload.isLoggedin = true;
+				payload.refreshToken = refreshToken;
+			}
+
+      console.log('payload', payload);
+
+      console.log("all cookies", cookies.getAll());
+		}
+
+		if (window !== window.parent) {
+			window.onmessage = function (e) {
+				//Prevent Unauthorized access
+				const url = new URL(
+					window.location != window.parent.location
+						? document.referrer
+						: document.location.href
+				);
+
+				if (!authorizedSites.has(url.origin)) {
+					console.log('Unauthorized access from ' + url);
+					return;
+				}
+				construstRefreshPayload();
+				window.parent.postMessage(JSON.stringify(payload), '*');
+			};
+		} else {
+			construstRefreshPayload();
+		}
+	}, []);
+	return <></>;
 };
 
 export default Authorize;

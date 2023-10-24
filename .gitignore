@@ -6,6 +6,11 @@
 .pnp.js
 /build
 
+.env
+.env.*
+
+!.env.example
+
 # testing
 /coverage
 
