@@ -11,7 +11,20 @@ const Logout = lazy(() => import('./pages/Logout/Logout'));
 const Authorize = lazy(() => import('./pages/Authorize/Authorize'));
 const NotFound = lazy(() => import('./pages/NotFound'));
 
+const excelYear = '2023';
+
+
 const App = () => {
+
+  const currentRefreshSavedYear = localStorage.getItem('refreshSavedYear');
+  if (!currentRefreshSavedYear || currentRefreshSavedYear != excelYear) {
+    localStorage.removeItem('refreshSavedYear');
+    localStorage.removeItem('refreshToken');
+    localStorage.setItem('refreshSavedYear', excelYear);
+    window.location.reload();
+    console.log("A New year, A New Excel");
+  }
+
   return (
     <div>
       <Router>
