@@ -3,6 +3,7 @@ import { GoogleLogin, GoogleOAuthProvider, useGoogleLogin, useGoogleOneTapLogin 
 import http from '../../config/http';
 import configs from '../../config/oauth_config';
 import logo from '../../assets/logotext.png'
+import googleIcon from '../../assets/google_icon.png'
 import './Login.css'
 import { cookies } from '../../config/cookie';
 
@@ -138,11 +139,11 @@ const Login = () => {
         <div className='loginPage' style={{ width: '100%', height: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
             <img src={logo} width={mobile ? "60%" : "30%"} />
             <div style={{ height: '20vh' }}></div>
-            <div class="google-btn" style={{ cursor: 'pointer' }} onClick={() => googleLogin()}>
-                <div class="google-icon-wrapper">
-                    <img class="google-icon" src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" />
+            <div className="google-btn" style={{ cursor: 'pointer' }} onClick={() => googleLogin()}>
+                <div className="google-icon-wrapper">
+                    <img className="google-icon" src={googleIcon} />
                 </div>
-                <p class="btn-text"><b>Sign in with google</b></p>
+                <p className="btn-text"><b>Sign in with google</b></p>
             </div>
         </div>
     );
