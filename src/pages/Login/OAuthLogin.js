@@ -52,7 +52,7 @@ const Login = () => {
          * will be redirected after successful login.
          * eg: excel main page, account page, etc.
          */
-        const redirectUri = decodeURIComponent(localStorage.getItem('redirect_to'));
+        const redirectUri = decodeURIComponent(localStorage.getItem('redirect_to') || 'https://excelmec.org');
         console.log(redirectUri);
 
         /**

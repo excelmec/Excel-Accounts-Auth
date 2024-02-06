@@ -16,9 +16,23 @@ const Logout = () => {
     cookies.remove('refreshToken');
     setTimeout(() => {
       const urlParams = new URLSearchParams(window.location.search);
-      const redirectUrl = urlParams.get('redirect_to');
-      console.log('Successfully logged out!');
-      window.location.href = redirectUrl;
+      const origRedirectUrl = urlParams.get('redirect_to') || 'https://excelmec.org';
+      console.log('Successfully logged out, logging out of accounts as well');
+
+      const AccFrontendUrl = process.env.REACT_APP_ACC_FRONTEND_BASE;
+      if(!AccFrontendUrl) {
+        console.log('No AccFrontendUrl found', origRedirectUrl);
+        window.location.href = origRedirectUrl;
+        return;
+      }
+
+      const AccFrontendUrlObj = new URL(AccFrontendUrl);
+      AccFrontendUrlObj.pathname = '/logout';
+      AccFrontendUrlObj.searchParams.append('redirect_to', origRedirectUrl);
+
+      console.log('Redirecting to', AccFrontendUrlObj.toString());
+
+      window.location.href = AccFrontendUrlObj.toString();
     }, 1500)
     
   },[]);

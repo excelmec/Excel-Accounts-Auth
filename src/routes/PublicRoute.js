@@ -13,7 +13,7 @@ const PublicRoute = ({
     );
     let rt = new URL(window.location.href).searchParams.get('redirect_to');
     if (!rt) {
-        window.location.href = 'https://accounts.excelmec.org/'
+        window.location.href = 'https://excelmec.org'
     }
     else {
         const redirectUrl = new URL(decodeURIComponent(rt));
