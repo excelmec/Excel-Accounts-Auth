@@ -11,7 +11,7 @@ const Logout = lazy(() => import('./pages/Logout/Logout'));
 const Authorize = lazy(() => import('./pages/Authorize/Authorize'));
 const NotFound = lazy(() => import('./pages/NotFound'));
 
-const excelYear = '2023';
+const excelYear = '2024';
 
 
 const App = () => {
