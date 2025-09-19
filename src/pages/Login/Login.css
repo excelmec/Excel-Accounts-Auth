@@ -1,13 +1,7 @@
 .loginPage {
   text-align: center;
   background-color: #000;
-  background: linear-gradient(
-    135deg,
-    rgba(198, 48, 201, 1),
-    rgba(0, 0, 0, 0.75),
-    rgba(0, 0, 0, 0.75),
-    rgba(51, 157, 220, 1)
-  );
+  background: linear-gradient( 135deg, rgb(254, 212, 77), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75), rgb(189, 68, 0) );
   background-position: center;
   background-repeat: repeat;
   background-size: cover;

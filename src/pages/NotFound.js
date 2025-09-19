@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../assets/logotext.svg";
+import logo from "../assets/logotext.png";
 const NotFound = () => {
   return (
     <div

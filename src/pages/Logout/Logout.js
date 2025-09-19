@@ -1,5 +1,5 @@
 import React, {useEffect} from "react";
-import logo from "../../assets/logotext.svg";
+import logo from "../../assets/logotext.png";
 import Cookies from "universal-cookie";
 
 const cookies = new Cookies(null, {
