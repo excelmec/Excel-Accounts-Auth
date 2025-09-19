@@ -7,7 +7,7 @@ import {
 } from "@react-oauth/google";
 import http from "../../config/http";
 import configs from "../../config/oauth_config";
-import logo from "../../assets/logotext.svg";
+import logo from "../../assets/logotext.png";
 import googleIcon from "../../assets/google_icon.png";
 import "./Login.css";
 import {cookies} from "../../config/cookie";
