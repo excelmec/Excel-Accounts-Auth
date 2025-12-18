@@ -1,6 +1,8 @@
+import "./Logout.css";
 import React, {useEffect} from "react";
 import logo from "../../assets/logotext.png";
 import Cookies from "universal-cookie";
+import "../Login/Login.css";
 
 const cookies = new Cookies(null, {
   httpOnly: false,
@@ -36,19 +38,31 @@ const Logout = () => {
   }, []);
 
   return (
-    <div
-      style={{
-        width: "100%",
-        height: "100vh",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        backgroundColor: "#000",
-      }}
-    >
-      <img src={logo} width="50%" />
-      <h1 className="auth-status-text">Logging out...</h1>
+    <div className="new-login-page">
+      <div className="time-orbs">
+        <div className="orb orb-1"></div>
+        <div className="orb orb-2"></div>
+        <div className="orb orb-3"></div>
+        <div className="orb orb-4"></div>
+        <div className="orb orb-5"></div>
+        <div className="orb orb-6"></div>
+        <div className="orb orb-7"></div>
+        <div className="orb orb-8"></div>
+      </div>
+
+      <div className="login-container">
+        <div className="logo-container">
+          <img
+            src={logo}
+            alt="Excel Logo"
+            className="login-logo"
+          />
+        </div>
+
+        <div className="login-content">
+          <h1 className="logout-text">Logging out...</h1> 
+        </div>
+      </div>
     </div>
   );
 };

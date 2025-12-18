@@ -146,31 +146,46 @@ const Login = () => {
     if (referralCode) localStorage.setItem("referralCode", referralCode);
   }, []);
 
-  return (
-    <div
-      className="loginPage"
-      style={{
-        width: "100%",
-        height: "100vh",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-      }}
-    >
-      <img src={logo} width={mobile ? "60%" : "30%"} />
-      <div style={{height: "20vh"}}></div>
-      <div
-        className="google-btn"
-        style={{cursor: "pointer"}}
-        onClick={() => googleLogin()}
-      >
-        <div className="google-icon-wrapper">
-          <img className="google-icon" src={googleIcon} />
+      return (
+    <div className="new-login-page">
+      {/* Animated background elements representing time */}
+      <div className="time-orbs">
+        <div className="orb orb-1"></div>
+        <div className="orb orb-2"></div>
+        <div className="orb orb-3"></div>
+        <div className="orb orb-4"></div>
+        <div className="orb orb-5"></div>
+        <div className="orb orb-6"></div>
+        <div className="orb orb-7"></div>
+        <div className="orb orb-8"></div>
+      </div>
+
+      {/* Main content container with glass morphism */}
+      <div className="login-container">
+        <div className="logo-container">
+          <img 
+            src={logo} 
+            alt="Excel Logo" 
+            className="login-logo"
+          />
         </div>
-        <p className="btn-text">
-          <b>Sign In With Google</b>
-        </p>
+
+        <div className="login-content">
+          <h1 className="login-title">Welcome</h1>
+          <p className="login-subtitle">Sign in to continue your journey</p>
+
+          <button
+            className="google-login-button"
+            onClick={() => googleLogin()}
+          >
+              <img 
+                src={googleIcon} 
+                alt="Google" 
+                className="google-icon"
+              />
+              <div className="button-text">Continue with Google</div>
+          </button>
+        </div>
       </div>
     </div>
   );
