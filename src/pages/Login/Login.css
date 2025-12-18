@@ -1,7 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --color-primary: #B23B02;
+  --color-secondary: #F7B83F;
+  --color-accent: #D56807;
+  --color-light: #FCF0A6;
+  --color-dark: #691701;
+  --color-tertiary: #A45D05;
+
+}
+
+* {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
 .loginPage {
   text-align: center;
   background-color: #000;
-  background: linear-gradient( 135deg, rgb(254, 212, 77), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75), rgb(189, 68, 0) );
+  background: linear-gradient(135deg, rgb(254, 212, 77), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75), rgb(189, 68, 0));
   background-position: center;
   background-repeat: repeat;
   background-size: cover;
@@ -21,13 +41,12 @@
   font-size: 0.875rem;
   line-height: 1.333333;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
-
   background-color: #000;
   border-color: #000;
   color: rgb(185, 185, 185);
-
   transition: background-color 0.3s;
 }
+
 .btn:hover,
 .btn:focus {
   cursor: pointer;
@@ -42,13 +61,11 @@
   background-color: #000000;
   border-radius: 1.25rem;
   border: 1.5px solid rgb(185, 185, 185);
-  /* box-shadow: 0 2px 3px 0 rgba(108, 107, 107, 0.25); */
 }
 
 .google-btn:hover {
   background-color: #111111;
   transform: scale(1.001);
-  /* border-color: #000; */
 }
 
 .google-icon-wrapper {
@@ -57,12 +74,12 @@
   height: 59px;
   border-radius: 2px;
   background-color: #fff00000;
-
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 0;
 }
+
 .google-icon {
   margin: 0;
   padding: 0;
@@ -74,25 +91,587 @@
   height: auto;
   text-shadow: #000;
 }
+
 .btn-text {
   float: right;
   margin: 18px 30px 0 0;
   color: rgb(185, 185, 185);
   font-size: 18px;
+  font-weight: 700;
   letter-spacing: 0.2px;
-  font-family: "Roboto";
-
+  font-family: "Inter";
   -webkit-text-fill-color: transparent;
   background: linear-gradient(90deg, #e10c5d, #f9681c);
-  background: linear-gradient(
-    135deg,
-    rgba(198, 48, 201, 1),
-    rgba(51, 157, 220, 1)
-  );
+  background: linear-gradient(135deg,
+      rgba(198, 48, 201, 1),
+      rgba(51, 157, 220, 1));
   background: white;
   background-clip: text;
   -webkit-background-clip: text;
   text-align: center;
 }
 
-@import url(https://fonts.googleapis.com/css?family=Roboto:500);
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.new-login-page {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: linear-gradient(135deg,
+      #0a0604 0%,
+      #1a0e08 25%,
+      #2a1508 50%,
+      #1a0e08 75%,
+      #0a0604 100%);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.time-orbs {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  filter: blur(50px);
+  opacity: 0.6;
+  mix-blend-mode: screen;
+}
+
+.orb {
+  position: absolute;
+  border-radius: 50%;
+}
+
+.orb-1 {
+  top: 5%;
+  left: 2%;
+  width: 500px;
+  height: 500px;
+  animation: orb-float-1 20s ease-in-out infinite alternate;
+  background-color: var(--color-primary);
+}
+
+.orb-2 {
+  top: 2%;
+  right: 8%;
+  width: 370px;
+  height: 370px;
+  animation: orb-float-2 18s ease-in-out infinite alternate;
+  animation-delay: -5s;
+  background-color: var(--color-secondary);
+}
+
+.orb-3 {
+  bottom: 3%;
+  left: 9%;
+  width: 410px;
+  height: 410px;
+  animation: orb-float-3 22s ease-in-out infinite alternate;
+  animation-delay: -10s;
+  background-color: var(--color-accent);
+}
+
+.orb-4 {
+  bottom: 8%;
+  right: 2%;
+  width: 510px;
+  height: 510px;
+  animation: orb-float-4 19s ease-in-out infinite alternate;
+  animation-delay: -15s;
+  background-color: var(--color-dark);
+}
+
+.orb-5 {
+  top: 30%;
+  left: 30%;
+  width: 320px;
+  /* Increased from 200 */
+  height: 320px;
+  animation: orb-float-5 16s ease-in-out infinite alternate;
+  animation-delay: -2s;
+  margin-left: -140px;
+  margin-top: -140px;
+  background-color: var(--color-tertiary);
+}
+
+.orb-6 {
+  top: 46%;
+  left: 52%;
+  width: 220px;
+  /* Increased from 150 */
+  height: 220px;
+  animation: orb-float-6 21s ease-in-out infinite alternate;
+  animation-delay: -7s;
+  background-color: var(--color-light);
+}
+
+.orb-7 {
+  bottom: 25%;
+  right: 23%;
+  width: 490px;
+  /* Increased from 180 */
+  height: 490px;
+  animation: orb-float-7 17s ease-in-out infinite alternate;
+  animation-delay: -12s;
+  background-color: var(--color-primary);
+}
+
+.orb-8 {
+  top: 32%;
+  right: 18%;
+  width: 240px;
+  /* Increased from 120 */
+  height: 240px;
+  animation: orb-float-8 23s ease-in-out infinite alternate;
+  animation-delay: -8s;
+  background-color: var(--color-accent);
+}
+
+/* Animations (Unchanged) */
+@keyframes orb-float-1 {
+  0% {
+    transform: translate(-100px, -50px) scale(0.8);
+  }
+
+  25% {
+    transform: translate(50px, 50px) scale(1.2);
+  }
+
+  50% {
+    transform: translate(150px, 0px) scale(1);
+  }
+
+  75% {
+    transform: translate(50px, -100px) scale(0.9);
+  }
+
+  100% {
+    transform: translate(-100px, 50px) scale(0.8);
+  }
+}
+
+@keyframes orb-float-2 {
+  0% {
+    transform: translate(100px, -50px) scale(1);
+  }
+
+  25% {
+    transform: translate(-50px, 50px) scale(0.8);
+  }
+
+  50% {
+    transform: translate(-150px, 0px) scale(1.2);
+  }
+
+  75% {
+    transform: translate(-50px, -100px) scale(1.1);
+  }
+
+  100% {
+    transform: translate(100px, 50px) scale(1);
+  }
+}
+
+@keyframes orb-float-3 {
+  0% {
+    transform: translate(-80px, 80px) scale(0.9);
+  }
+
+  25% {
+    transform: translate(80px, -60px) scale(1.1);
+  }
+
+  50% {
+    transform: translate(140px, 20px) scale(0.85);
+  }
+
+  75% {
+    transform: translate(60px, 120px) scale(1.15);
+  }
+
+  100% {
+    transform: translate(-80px, -40px) scale(0.9);
+  }
+}
+
+@keyframes orb-float-4 {
+  0% {
+    transform: translate(120px, 70px) scale(1.1);
+  }
+
+  25% {
+    transform: translate(-100px, -80px) scale(0.85);
+  }
+
+  50% {
+    transform: translate(-160px, 30px) scale(1.2);
+  }
+
+  75% {
+    transform: translate(-80px, 110px) scale(0.95);
+  }
+
+  100% {
+    transform: translate(120px, -50px) scale(1.1);
+  }
+}
+
+@keyframes orb-float-5 {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  25% {
+    transform: translate(-60px, 70px) scale(1.15);
+  }
+
+  50% {
+    transform: translate(80px, -50px) scale(0.9);
+  }
+
+  75% {
+    transform: translate(-40px, -80px) scale(1.05);
+  }
+
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+}
+
+@keyframes orb-float-6 {
+  0% {
+    transform: translate(-50px, -30px) scale(0.85);
+  }
+
+  25% {
+    transform: translate(60px, 60px) scale(1.1);
+  }
+
+  50% {
+    transform: translate(100px, -20px) scale(0.95);
+  }
+
+  75% {
+    transform: translate(40px, -70px) scale(1.2);
+  }
+
+  100% {
+    transform: translate(-50px, 40px) scale(0.85);
+  }
+}
+
+@keyframes orb-float-7 {
+  0% {
+    transform: translate(90px, 50px) scale(1);
+  }
+
+  25% {
+    transform: translate(-70px, -60px) scale(0.9);
+  }
+
+  50% {
+    transform: translate(-130px, 10px) scale(1.15);
+  }
+
+  75% {
+    transform: translate(-50px, 90px) scale(0.85);
+  }
+
+  100% {
+    transform: translate(90px, -40px) scale(1);
+  }
+}
+
+@keyframes orb-float-8 {
+  0% {
+    transform: translate(70px, -40px) scale(0.9);
+  }
+
+  25% {
+    transform: translate(-50px, 80px) scale(1.2);
+  }
+
+  50% {
+    transform: translate(110px, 30px) scale(0.85);
+  }
+
+  75% {
+    transform: translate(-30px, -70px) scale(1.1);
+  }
+
+  100% {
+    transform: translate(70px, 50px) scale(0.9);
+  }
+}
+
+/* Main Glass Card Container */
+.login-container {
+  position: relative;
+  z-index: 10;
+  width: 90%;
+  max-width: 560px;
+
+  /* Clean Glass - No Black Shadow */
+  background: rgba(30, 30, 30, 0.4);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(40px);
+
+  border: 1px solid rgba(252, 240, 166, 0.08);
+  border-radius: 32px;
+  padding: 60px 48px;
+
+  /* Shadow removed as requested */
+  box-shadow: none;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Logo Section */
+.logo-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 50px;
+}
+
+.login-logo {
+  width: 100%;
+  max-width: 600px;
+  height: auto;
+  /* Reduced drop shadow intensity since main shadows are gone */
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.3));
+}
+
+/* Content Section */
+.login-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login-title {
+  color: var(--color-light);
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin: 0 0 10px 0;
+  text-align: center;
+}
+
+.login-subtitle {
+  color: rgba(252, 240, 166, 0.7);
+  font-size: 1.15rem;
+  margin: 0 0 50px 0;
+  text-align: center;
+}
+
+/* ================================================= */
+/* UPDATED GOOGLE LOGIN BUTTON - FIXED LAYOUT & ICON */
+/* ================================================= */
+
+.google-login-button {
+  all: unset;
+  /* Resets default button styles */
+  box-sizing: border-box;
+  position: relative;
+
+  width: max-content;
+  height: 72px;
+  border-radius: 36px;
+
+  background-color: var(--color-primary);
+  /* Shadow removed as requested */
+  box-shadow: none;
+
+  cursor: pointer;
+  overflow: hidden;
+  padding: 0 24px;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 16px;
+
+  transition: transform 0.1s ease, background-color 0.2s ease;
+}
+
+/* Container for Icon + Text to ensure centering */
+
+.image-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  aspect-ratio: 1/1;
+}
+
+/* The White Circle Wrapper */
+.google-icon {
+  position: relative;
+  display: flex;
+  background: white;
+  width: 40px;
+  /* Fixed dimension */
+  height: 40px;
+  /* Fixed dimension */
+  border-radius: 50%;
+}
+
+/* The actual Google G Logo Image/SVG */
+
+
+.button-text {
+  color: var(--color-light);
+  font-size: 1.3rem;
+  font-weight: 500;
+  letter-spacing: 0.2px;
+  white-space: nowrap;
+  /* Prevent text wrapping */
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* State Layer / Hover Effects */
+
+
+.google-login-button:hover {
+  /* No shadow on hover, just brightness/overlay change */
+  background-color: var(--color-accent);
+  /* Slight color shift */
+}
+
+.google-login-button:hover::before {
+  opacity: 0.12;
+}
+
+.google-login-button:active {
+  transform: scale(0.98);
+}
+
+/* Focus Styles */
+.google-login-button:focus-visible {
+  outline: 3px solid var(--color-secondary);
+  outline-offset: 4px;
+}
+
+/* ============================================ */
+/* RESPONSIVE DESIGN */
+/* ============================================ */
+
+@media (max-width: 768px) {
+  .login-container {
+    width: 90%;
+    padding: 40px 24px;
+  }
+
+  .login-logo {
+    max-width: 280px;
+  }
+
+  .login-title {
+    font-size: 2rem;
+  }
+
+
+
+  /* Increased mobile orb sizes slightly to match desktop bump */
+  .orb-1,
+  .orb-2,
+  .orb-3,
+  .orb-4 {
+    width: 300px;
+    height: 300px;
+  }
+
+  .orb-5,
+  .orb-6,
+  .orb-7,
+  .orb-8 {
+    width: 200px;
+    height: 200px;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-container {
+    padding: 32px 20px;
+  }
+
+  .login-logo {
+    max-width: 240px;
+  }
+
+  .login-title {
+    font-size: 1.75rem;
+  }
+
+  .login-subtitle {
+    font-size: 1rem;
+  }
+
+
+
+  .button-text {
+    font-size: 1.1rem;
+  }
+
+  /* Mobile orb sizes */
+  .orb-1,
+  .orb-2,
+  .orb-3,
+  .orb-4 {
+    width: 220px;
+    height: 220px;
+  }
+
+  .orb-5,
+  .orb-6,
+  .orb-7,
+  .orb-8 {
+    width: 160px;
+    height: 160px;
+  }
+
+  /* Hide some orbs on very small screens if it gets too messy, 
+     but keeping visible as requested */
+}
+
+/* Accessibility - Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+
+  .orb,
+  .login-container,
+  .logo-container,
+  .login-content,
+  .google-login-button {
+    animation: none !important;
+  }
+
+  .google-login-button:hover {
+    transform: none;
+  }
+
+  .google-login-button:hover .google-icon {
+    transform: none;
+  }
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+  .login-container {
+    border: 2px solid var(--color-secondary);
+  }
+
+  .google-login-button {
+    border: 2px solid var(--color-light);
+  }
+}
