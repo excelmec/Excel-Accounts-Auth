@@ -1,47 +1,42 @@
-import React, {useState} from "react";
+import React from "react";
 import {
-  GoogleLogin,
   GoogleOAuthProvider,
   useGoogleLogin,
-  useGoogleOneTapLogin,
 } from "@react-oauth/google";
 import http from "../../config/http";
 import configs from "../../config/oauth_config";
 import logo from "../../assets/logotext.png";
 import googleIcon from "../../assets/google_icon.png";
 import "./Login.css";
-import {cookies} from "../../config/cookie";
+import { cookies } from "../../config/cookie";
 
 const config = configs();
 
 window.addEventListener("error", (event) => {
   console.log("Error: ", event);
-  alert("Error event msg: ", event.message);
 });
 
 const setRefreshTokenCookie = (refreshToken) => {
-  console.log("Setting refresh token cookie...");
   const oneYear = 60 * 60 * 24 * 365 - 1000;
-  cookies.set("refreshToken", refreshToken, {
-    maxAge: oneYear,
-  });
+  cookies.set("refreshToken", refreshToken, { maxAge: oneYear });
 };
 
 const Login = () => {
-  const [mobile, setMobile] = useState(false);
   const onFailure = (error) => {
-    // alert(JSON.stringify(error));
     try {
       alert(`Error: ${error.error.split("_").join(" ")}`);
     } catch (e) {
-      alert("Please enable cookies if you are in private mode. ");
+      alert("Please enable cookies if you are in private mode.");
     }
     console.log("Google login failure...", error);
   };
+
   const googleLogin = useGoogleLogin({
     onSuccess: (tokenResponse) =>
-      googleResponse({credential: tokenResponse.access_token}),
+      googleResponse({ credential: tokenResponse.access_token }),
+    onError: onFailure,
   });
+
   const googleResponse = (response) => {
     console.log(response);
     if (!response.credential) {
@@ -49,23 +44,12 @@ const Login = () => {
       return;
     }
 
-    /**
-     * This is the redirectUri to which the user
-     * will be redirected after successful login.
-     * eg: excel main page, account page, etc.
-     */
     const redirectUri = decodeURIComponent(
       localStorage.getItem("redirect_to") || "https://excelmec.org"
     );
-    console.log(redirectUri);
 
-    /**
-     * This is to test the signup flow in development,
-     * without triggering it from Frontend.
-     */
     if (
       process.env.REACT_APP_ENVIRONMENT === "development" &&
-      redirectUri &&
       redirectUri === "copy_g_access_token"
     ) {
       prompt("Copy the google access token", response.credential);
@@ -74,27 +58,22 @@ const Login = () => {
     }
 
     http
-      .post(config.redirectUrl, {accessToken: response.credential})
+      .post(config.redirectUrl, { accessToken: response.credential })
       .then((user) => {
-        // console.log('user: ', user);
-        const {accessToken, refreshToken} = user;
+        const { accessToken, refreshToken } = user;
         if (
           !(accessToken && refreshToken) ||
           !(typeof accessToken === "string" && typeof refreshToken === "string")
         ) {
-          console.log("Error...invalid jwt");
           alert("Invalid JWT");
           return;
         }
-
-        console.log("Successfull", accessToken);
 
         setRefreshTokenCookie(refreshToken);
         localStorage.setItem("refreshToken", refreshToken);
 
         if (
           process.env.REACT_APP_ENVIRONMENT === "development" &&
-          redirectUri &&
           redirectUri === "copy_access_token"
         ) {
           prompt("Copy the access token", accessToken);
@@ -104,7 +83,6 @@ const Login = () => {
 
         if (
           process.env.REACT_APP_ENVIRONMENT === "development" &&
-          redirectUri &&
           redirectUri === "copy_refresh_token"
         ) {
           prompt("Copy the refresh token", refreshToken);
@@ -115,88 +93,79 @@ const Login = () => {
         debugger;
         if (redirectUri) {
           localStorage.removeItem("redirect_to");
-
           const redirectUrl = new URL(redirectUri);
           const redirectParams = new URLSearchParams(redirectUrl.search);
-          if (redirectParams.has("refreshToken")) {
-            redirectParams.delete("refreshToken");
-          }
+          if (redirectParams.has("refreshToken")) redirectParams.delete("refreshToken");
           redirectParams.append("refreshToken", refreshToken);
           redirectUrl.search = redirectParams.toString();
           window.location.href = redirectUrl.toString();
         } else {
-          window.location.href = `https://accounts.excelmec.org`;
+          window.location.href = "https://accounts.excelmec.org";
         }
       })
       .catch((err) => console.log("error occurred...", err));
   };
 
   React.useEffect(() => {
-    let width = window.innerWidth;
-    if (width < 800) {
-      setMobile(true);
-    }
     const searchString = window.location.href.slice(
       window.location.href.indexOf("?")
     );
     const urlParams = new URLSearchParams(searchString);
-    const redirectUrl = urlParams.get("redirect_to"); // check if redirectUrl is null.
+    const redirectUrl = urlParams.get("redirect_to");
     const referralCode = urlParams.get("referral");
     localStorage.setItem("redirect_to", decodeURIComponent(redirectUrl));
     if (referralCode) localStorage.setItem("referralCode", referralCode);
   }, []);
 
-      return (
-    <div className="new-login-page">
-      {/* Animated background elements representing time */}
-      <div className="time-orbs">
-        <div className="orb orb-1"></div>
-        <div className="orb orb-2"></div>
-        <div className="orb orb-3"></div>
-        <div className="orb orb-4"></div>
-        <div className="orb orb-5"></div>
-        <div className="orb orb-6"></div>
-        <div className="orb orb-7"></div>
-        <div className="orb orb-8"></div>
-      </div>
+  return (
+    <div className="login-page">
+      {/* background grid */}
+      <div className="grid-bg" aria-hidden="true" />
 
-      {/* Main content container with glass morphism */}
-      <div className="login-container">
-        <div className="logo-container">
-          <img 
-            src={logo} 
-            alt="Excel Logo" 
-            className="login-logo"
-          />
+      <div className="login-card" role="main">
+
+        {/* Logo */}
+        <div className="login-logo-wrap">
+          <img src={logo} alt="Excel MEC" className="login-logo" />
         </div>
 
-        <div className="login-content">
-          <h1 className="login-title">Welcome</h1>
-          <p className="login-subtitle">Sign in to continue your journey</p>
+        {/* Heading */}
+        <h1 className="login-title">
+          <strong>Welcome</strong>
+        </h1>
+        <p className="login-sub">
+          Sign in to continue your journey across the Multiverse
+        </p>
 
-          <button
-            className="google-login-button"
-            onClick={() => googleLogin()}
-          >
-              <img 
-                src={googleIcon} 
-                alt="Google" 
-                className="google-icon"
-              />
-              <div className="button-text">Continue with Google</div>
-          </button>
+        {/* Divider */}
+        <div className="login-divider" aria-hidden="true">
+          <span>continue with</span>
         </div>
+
+        {/* Google Button */}
+        <button
+          id="google-signin-btn"
+          className="google-login-button"
+          onClick={() => googleLogin()}
+          aria-label="Sign in with Google"
+        >
+          <div className="g-icon-circle">
+            <img src={googleIcon} alt="" className="google-icon" aria-hidden="true" />
+          </div>
+          <span className="btn-label">Continue with Google</span>
+        </button>
+
+
+
       </div>
     </div>
   );
 };
 
-const LoginComponent = () => {
-  return (
-    <GoogleOAuthProvider clientId={config.clientId}>
-      <Login />
-    </GoogleOAuthProvider>
-  );
-};
+const LoginComponent = () => (
+  <GoogleOAuthProvider clientId={config.clientId}>
+    <Login />
+  </GoogleOAuthProvider>
+);
 
 export default LoginComponent;

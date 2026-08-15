@@ -4,28 +4,19 @@ import "./Login/Login.css";
 
 const NotFound = () => {
   return (
-    <div className="new-login-page">
-      <div className="time-orbs">
-        <div className="orb orb-1"></div>
-        <div className="orb orb-2"></div>
-        <div className="orb orb-3"></div>
-        <div className="orb orb-4"></div>
-        <div className="orb orb-5"></div>
-        <div className="orb orb-6"></div>
-        <div className="orb orb-7"></div>
-        <div className="orb orb-8"></div>
-      </div>
-
+    <div className="login-page">
+      <div className="grid-bg" aria-hidden="true" />
       <img
         src={logo}
-        alt="Excel Logo"
+        alt="Excel MEC"
         style={{
-          width: '80%',
-          maxWidth: '1400px',
+          width: '100%',
+          maxWidth: '1100px',
           height: 'auto',
-          filter: 'drop-shadow(0 8px 30px rgba(0,0,0,0.4))',
+          padding: '32px',
           position: 'relative',
-          zIndex: 10
+          zIndex: 10,
+          filter: 'drop-shadow(0 4px 32px rgba(90,30,71,0.35))',
         }}
       />
     </div>

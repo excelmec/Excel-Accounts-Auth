@@ -1,9 +1,9 @@
 :root {
-    --color-primary: #B23B02;
-    --color-secondary: #F7B83F;
-    --color-accent: #D56807;
-    --color-light: #FCF0A6;
-    --color-dark: #691701;
+    --color-primary: #5A1E47;
+    --color-secondary: #7D2D63;
+    --color-accent: #3D1532;
+    --color-light: #E8C4DC;
+    --color-dark: #0F1E28;
 }
 
 .spinner {
@@ -11,7 +11,7 @@
     width: 40px;
     height: 40px;
     position: relative;
-    filter: drop-shadow(0 0 15px rgba(247, 184, 63, 0.4));
+    filter: drop-shadow(0 0 15px rgba(90, 30, 71, 0.4));
 }
 
 .cube1,
@@ -25,7 +25,7 @@
     border-radius: 3px;
     -webkit-animation: sk-cubemove 1.8s infinite ease-in-out;
     animation: sk-cubemove 1.8s infinite ease-in-out;
-    box-shadow: 0 0 10px rgba(247, 184, 63, 0.3);
+    box-shadow: 0 0 10px rgba(125, 45, 99, 0.3);
 }
 
 .cube2 {
