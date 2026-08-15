@@ -36,47 +36,70 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--navy);
+  background-color: #030014;
   position: relative;
   overflow: hidden;
 }
 
-/* ── background glow blobs ── */
+/* ── Premium Multiverse Animated Auroras ── */
 .login-page::before {
   content: '';
   position: absolute;
-  top: -200px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 700px;
-  height: 700px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(90,30,71,0.28) 0%, transparent 65%);
+  width: 80vw;
+  height: 80vw;
+  top: -20%;
+  left: -20%;
+  background: radial-gradient(circle, rgba(121,40,202,0.5) 0%, transparent 60%);
+  filter: blur(80px);
+  animation: aura1 20s ease-in-out infinite alternate;
   pointer-events: none;
 }
 
 .login-page::after {
   content: '';
   position: absolute;
-  bottom: -220px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 600px;
-  height: 600px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(90,30,71,0.18) 0%, transparent 65%);
+  width: 70vw;
+  height: 70vw;
+  bottom: -20%;
+  right: -20%;
+  background: radial-gradient(circle, rgba(255,0,128,0.4) 0%, transparent 60%);
+  filter: blur(80px);
+  animation: aura2 25s ease-in-out infinite alternate-reverse;
   pointer-events: none;
+  z-index: 0;
 }
 
-/* subtle grid */
+@keyframes aura1 {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(20vw, 10vw) scale(1.1); }
+  100% { transform: translate(-10vw, 20vw) scale(0.9); }
+}
+
+@keyframes aura2 {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-20vw, -15vw) scale(1.2); }
+  100% { transform: translate(10vw, -25vw) scale(0.85); }
+}
+
+/* Dynamic Grid */
 .grid-bg {
   position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(rgba(232,196,220,0.022) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(232,196,220,0.022) 1px, transparent 1px);
-  background-size: 52px 52px;
+  inset: -50%;
+  background-image: 
+    linear-gradient(to right, rgba(255,255,255,0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+  transform: perspective(1000px) rotateX(60deg) translateY(0);
+  animation: gridScroll 15s linear infinite;
   pointer-events: none;
+  mask-image: radial-gradient(circle at center, black 10%, transparent 65%);
+  -webkit-mask-image: radial-gradient(circle at center, black 10%, transparent 65%);
+  z-index: 1;
+}
+
+@keyframes gridScroll {
+  0% { transform: perspective(1000px) rotateX(60deg) translateY(0); }
+  100% { transform: perspective(1000px) rotateX(60deg) translateY(60px); }
 }
 
 /* ─────────────────────────────────────────────
@@ -86,24 +109,30 @@ body {
   position: relative;
   z-index: 10;
   width: 100%;
-  max-width: 420px;
+  max-width: 440px;
   margin: 24px;
   padding: 56px 48px 48px;
   border-radius: 24px;
-  background: rgba(22, 37, 53, 0.72);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  border: 1px solid var(--border);
+  
+  /* Premium Glassmorphism */
+  background: rgba(15, 15, 25, 0.45);
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 
+    0 30px 60px rgba(0,0,0,0.5), 
+    inset 0 1px 0 rgba(255,255,255,0.15),
+    inset 0 0 20px rgba(255,255,255,0.02);
+  
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  animation: card-in 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: cardReveal 1s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
-@keyframes card-in {
-  from { opacity: 0; transform: translateY(20px); }
-  to   { opacity: 1; transform: translateY(0); }
+@keyframes cardReveal {
+  from { opacity: 0; transform: translateY(40px) scale(0.95); filter: blur(10px); }
+  to   { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
 }
 
 /* ─────────────────────────────────────────────
