@@ -1,11 +1,26 @@
-import React from 'react';
-import logo from '../assets/logotext.png'
+import React from "react";
+import logo from "../assets/logotext.png";
+import "./Login/Login.css";
+
 const NotFound = () => {
-    return (
-        <div style={{ width:'100%', height:'100vh', display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', backgroundColor: '#000'}}>
-                <img src={logo} width="50%"/>
-        </div>
-    );
-}
+  return (
+    <div className="login-page">
+      <div className="grid-bg" aria-hidden="true" />
+      <img
+        src={logo}
+        alt="Excel MEC"
+        style={{
+          width: '100%',
+          maxWidth: '1100px',
+          height: 'auto',
+          padding: '32px',
+          position: 'relative',
+          zIndex: 10,
+          filter: 'drop-shadow(0 4px 32px rgba(90,30,71,0.35))',
+        }}
+      />
+    </div>
+  );
+};
 
 export default NotFound;

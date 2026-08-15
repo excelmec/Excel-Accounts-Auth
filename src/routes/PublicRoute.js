@@ -1,6 +1,7 @@
 import React from 'react';
 import { isLoggedIn } from '../config/oauth_config';
 import { Route } from 'react-router-dom';
+import AlreadyLoggedIn from '../pages/AlreadyLoggedIn';
 
 const PublicRoute = ({
     component: Component,
@@ -39,9 +40,7 @@ const PublicRoute = ({
     }
     // }
     return (
-        <div style={{ width: '100%', height: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', backgroundColor: '#000' }}>
-            <h2 className='fullCenter' style={{ color: 'white' }}>Already logged in</h2>
-        </div>
+        <AlreadyLoggedIn />
     )
 }
 
