@@ -3,34 +3,27 @@ import logo from "../assets/logotext.png";
 import "./Login/Login.css";
 
 const AlreadyLoggedIn = () => {
-    return (
-        <div className="new-login-page">
-            <div className="time-orbs">
-                <div className="orb orb-1"></div>
-                <div className="orb orb-2"></div>
-                <div className="orb orb-3"></div>
-                <div className="orb orb-4"></div>
-                <div className="orb orb-5"></div>
-                <div className="orb orb-6"></div>
-                <div className="orb orb-7"></div>
-                <div className="orb orb-8"></div>
-            </div>
+  return (
+    <div className="login-page">
+      {/* background grid */}
+      <div className="grid-bg" aria-hidden="true" />
 
-            <div className="login-container">
-                <div className="logo-container">
-                    <img
-                        src={logo}
-                        alt="Excel Logo"
-                        className="login-logo"
-                    />
-                </div>
-
-                <div className="login-content">
-                    <h1 className="login-title">Already Logged In</h1>
-                </div>
-            </div>
+      <div className="login-card" role="main">
+        {/* Logo */}
+        <div className="login-logo-wrap">
+          <img src={logo} alt="Excel MEC" className="login-logo" />
         </div>
-    );
+
+        {/* Heading */}
+        <h1 className="login-title">
+          <strong>Already Logged In</strong>
+        </h1>
+        <p className="login-sub">
+          You are currently signed into your account.
+        </p>
+      </div>
+    </div>
+  );
 };
 
 export default AlreadyLoggedIn;
